@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>CyberLearn — Daily Vulnerability Trainer</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600;800&family=Orbitron:wght@600;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css" />
+</head>
+<body>
+<div class="matrix-bg" id="matrix"></div>
+<header class="topbar">
+  <div class="logo"><span class="bracket">[</span> CYBER<span class="accent">LEARN</span> <span class="bracket">]</span></div>
+  <div class="header-right">
+    <div class="streak" id="streakBox">🔥 <span id="streakNum">0</span> learned</div>
+    <button id="themeToggle" class="theme-btn" title="Toggle theme">🌙</button>
+  </div>
+</header>
+<main>
+  <section class="hero">
+    <h1 class="glitch" data-text="VULNERABILITY DOJO">VULNERABILITY DOJO</h1>
+    <p class="subtitle">// 30-Day Advanced Web Exploitation Track · 24 Jun → 24 Jul 2026</p>
+    <div class="progress-wrap">
+      <div class="progress-bar"><div class="progress-fill" id="progressFill"></div></div>
+      <span class="progress-text" id="progressText">0 / 30</span>
+    </div>
+  </section>
+  <section class="grid" id="lessonGrid"></section>
+  <section class="scorecard" id="scorecard">
+    <h2>📊 FINAL SCORECARD</h2>
+    <div class="score-stats" id="scoreStats"></div>
+  </section>
+</main>
+<footer><p>⚡ Built for ethical learning only · Practice in legal labs (PortSwigger, HTB, TryHackMe)</p></footer>
+<div class="modal-overlay" id="modal"><div class="modal" id="modalContent"></div></div>
+<script src="app.js"></script>
+</body>
+</html>
