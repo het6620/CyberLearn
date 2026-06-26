@@ -172,6 +172,9 @@
   <p>Built for ethical learning only · Practice in legal labs (PortSwigger, HTB, TryHackMe)</p>
 </footer>
 
+</div><!-- #appShell -->
+
+<!-- Lesson Modal — outside appShell so position:fixed works regardless of auth state -->
 <div class="modal-overlay" id="modal">
   <div class="modal" id="modalContent" role="dialog" aria-modal="true"></div>
 </div>
@@ -211,8 +214,6 @@
     <div id="adminUserList" class="admin-user-list"></div>
   </div>
 </div>
-
-</div><!-- #appShell -->
 
 <script src="app.js"></script>
 </body>
