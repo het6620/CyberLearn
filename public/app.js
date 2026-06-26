@@ -385,7 +385,8 @@ document.getElementById("severityFilter").addEventListener("change", (e) => {
 
 function matchesFilters(l, i) {
   if (state.search) {
-    const hay = [l.name, l.category, l.definition, l.cve?.join(" ") || ""].join(" ").toLowerCase();
+    const cveText = Array.isArray(l.cve) ? l.cve.join(" ") : (l.cve || "");
+    const hay = [l.name, l.category, l.definition, cveText].join(" ").toLowerCase();
     if (!hay.includes(state.search)) return false;
   }
   if (state.category && l.category !== state.category) return false;
@@ -487,7 +488,7 @@ function openModal(i) {
     </div>
     <div class="sec"><h3>Definition</h3><p>${l.definition}</p></div>
     <div class="sec"><h3>Theory & Mechanism</h3><p>${l.theory}</p></div>
-    ${l.cve?.length ? `<div class="sec"><h3>Real-World CVEs</h3><p>${l.cve.map(c=>`<span class="cve-tag">${c}</span>`).join(" ")}</p></div>` : ""}
+    ${l.cve?.length ? `<div class="sec"><h3>Real-World CVEs</h3><p>${(Array.isArray(l.cve) ? l.cve : [l.cve]).map(c=>`<span class="cve-tag">${escapeHtml(c)}</span>`).join(" ")}</p></div>` : ""}
     <div class="sec"><h3>Exploitation</h3><pre>${escapeHtml(l.exploit)}</pre></div>
     <div class="sec"><h3>Mitigation</h3><p>${l.mitigation}</p></div>
     <div class="quiz-box">
