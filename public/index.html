@@ -3,37 +3,117 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>CyberLearn — Daily Vulnerability Trainer</title>
+<title>CyberLearn — Vulnerability Dojo</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600;800&family=Orbitron:wght@600;900&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-<div class="matrix-bg" id="matrix"></div>
+
 <header class="topbar">
-  <div class="logo"><span class="bracket">[</span> CYBER<span class="accent">LEARN</span> <span class="bracket">]</span></div>
+  <div class="brand">
+    <span class="brand-mark" aria-hidden="true">
+      <svg viewBox="0 0 24 24" width="20" height="20"><path d="M12 2 4 5v6c0 5 3.4 8.7 8 9.9 4.6-1.2 8-4.9 8-9.9V5l-8-3Z" fill="none" stroke="currentColor" stroke-width="1.6"/><path d="M9 12l2 2 4-4" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    </span>
+    <span class="brand-name">CyberLearn</span>
+    <span class="brand-sep">/</span>
+    <span class="brand-sub">Vulnerability Dojo</span>
+  </div>
   <div class="header-right">
-    <div class="streak" id="streakBox">🔥 <span id="streakNum">0</span> learned</div>
-    <button id="themeToggle" class="theme-btn" title="Toggle theme">🌙</button>
+    <div class="streak-chip" id="streakChip">
+      <span class="streak-flame" aria-hidden="true">▲</span>
+      <span id="streakNum">0</span>
+      <span class="streak-label">day streak</span>
+    </div>
+    <button type="button" id="themeToggle" class="icon-btn" title="Toggle theme" aria-label="Toggle theme">
+      <svg id="iconMoon" viewBox="0 0 24 24" width="18" height="18"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8Z" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/></svg>
+      <svg id="iconSun" viewBox="0 0 24 24" width="18" height="18" style="display:none"><circle cx="12" cy="12" r="4.2" fill="none" stroke="currentColor" stroke-width="1.6"/><g stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><path d="M12 2.5v2.4M12 19v2.4M4.6 4.6l1.7 1.7M17.7 17.7l1.7 1.7M2.5 12h2.4M19 12h2.4M4.6 19.4l1.7-1.7M17.7 6.3l1.7-1.7"/></g></svg>
+    </button>
   </div>
 </header>
+
 <main>
+
   <section class="hero">
-    <h1 class="glitch" data-text="VULNERABILITY DOJO">VULNERABILITY DOJO</h1>
-    <p class="subtitle">// 30-Day Advanced Web Exploitation Track · 24 Jun → 24 Jul 2026</p>
-    <div class="progress-wrap">
-      <div class="progress-bar"><div class="progress-fill" id="progressFill"></div></div>
-      <span class="progress-text" id="progressText">0 / 30</span>
+    <div class="hero-text">
+      <p class="eyebrow">30-DAY ADVANCED WEB EXPLOITATION TRACK</p>
+      <h1 class="hero-title">Vulnerability<br/>Dojo</h1>
+      <p class="hero-sub">31 vulnerability classes. Theory, real CVEs, exploitation walkthroughs, and mitigation — one console, lab use only.</p>
+      <p class="hero-window">24 Jun → 24 Jul 2026</p>
+    </div>
+    <div class="hero-ring" aria-hidden="true">
+      <svg viewBox="0 0 200 200" class="ring-svg">
+        <circle cx="100" cy="100" r="86" class="ring-track"/>
+        <circle cx="100" cy="100" r="86" class="ring-fill" id="ringFill"/>
+        <circle cx="100" cy="100" r="86" class="ring-sweep" id="ringSweep"/>
+      </svg>
+      <div class="ring-center">
+        <span class="ring-num" id="ringPct">0%</span>
+        <span class="ring-lbl">mastered</span>
+      </div>
     </div>
   </section>
-  <section class="grid" id="lessonGrid"></section>
-  <section class="scorecard" id="scorecard">
-    <h2>📊 FINAL SCORECARD</h2>
-    <div class="score-stats" id="scoreStats"></div>
+
+  <section class="control-bar">
+    <div class="search-wrap">
+      <svg viewBox="0 0 24 24" width="16" height="16" class="search-icon"><circle cx="11" cy="11" r="7" fill="none" stroke="currentColor" stroke-width="1.7"/><path d="M21 21l-4.3-4.3" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></svg>
+      <input type="text" id="searchInput" placeholder="Search vulnerabilities, CVEs, techniques…" autocomplete="off" />
+    </div>
+    <div class="filter-row" id="categoryFilters"></div>
+    <div class="filter-row filter-row-secondary">
+      <button type="button" class="chip-toggle" id="filterBookmarked" data-active="false">
+        <svg viewBox="0 0 24 24" width="13" height="13"><path d="M6 3h12v18l-6-4-6 4V3Z" fill="none" stroke="currentColor" stroke-width="1.6"/></svg>
+        Bookmarked
+      </button>
+      <button type="button" class="chip-toggle" id="filterDone" data-active="false">✓ Learned</button>
+      <button type="button" class="chip-toggle" id="filterPending" data-active="false">○ Pending</button>
+      <select id="severityFilter" class="severity-select">
+        <option value="">All severities</option>
+        <option value="Critical">Critical</option>
+        <option value="High">High</option>
+        <option value="Medium">Medium</option>
+      </select>
+    </div>
   </section>
+
+  <section class="grid" id="lessonGrid"></section>
+  <p class="empty-state" id="emptyState" hidden>No lessons match these filters. Try clearing a filter or search term.</p>
+
+  <section class="analytics" id="analytics">
+    <div class="analytics-head">
+      <h2>Analytics</h2>
+      <p class="analytics-sub">Category mastery, severity coverage, and where to focus next.</p>
+    </div>
+    <div class="analytics-grid">
+      <div class="panel">
+        <h3>Score overview</h3>
+        <div class="score-stats" id="scoreStats"></div>
+      </div>
+      <div class="panel">
+        <h3>Category mastery</h3>
+        <div id="categoryBars" class="bar-list"></div>
+      </div>
+      <div class="panel">
+        <h3>Severity coverage</h3>
+        <div id="severityBars" class="bar-list"></div>
+      </div>
+      <div class="panel" id="weakAreasPanel">
+        <h3>Focus areas</h3>
+        <div id="weakAreasList" class="weak-list"></div>
+      </div>
+    </div>
+  </section>
+
 </main>
-<footer><p>⚡ Built for ethical learning only · Practice in legal labs (PortSwigger, HTB, TryHackMe)</p></footer>
-<div class="modal-overlay" id="modal"><div class="modal" id="modalContent"></div></div>
+
+<footer>
+  <p>Built for ethical learning only · Practice in legal labs (PortSwigger, HTB, TryHackMe)</p>
+</footer>
+
+<div class="modal-overlay" id="modal">
+  <div class="modal" id="modalContent" role="dialog" aria-modal="true"></div>
+</div>
+
 <script src="app.js"></script>
 </body>
 </html>

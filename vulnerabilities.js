@@ -1,6 +1,10 @@
+// Auto-generated field order: name, category, severity, definition, theory, cve, exploit, mitigation, quiz.
+// Categories follow OWASP-style groupings; severity is a qualitative CVSS-informed rating.
 module.exports = [
   {
     "name": "Server-Side Request Forgery (SSRF)",
+    "category": "Server-Side",
+    "severity": "Critical",
     "definition": "SSRF allows an attacker to induce the server-side application to make HTTP requests to an arbitrary domain of the attacker's choosing.",
     "theory": "The server fetches a remote resource based on user-supplied input (a URL) without validating it. Attackers abuse this to reach internal services (169.254.169.254 cloud metadata, localhost admin panels, internal APIs) not exposed externally. Bypasses: decimal IP, IPv6, DNS rebinding, redirect chains.",
     "cve": "CVE-2021-26855 (Microsoft Exchange ProxyLogon)",
@@ -19,6 +23,8 @@ module.exports = [
   },
   {
     "name": "XML External Entity (XXE) Injection",
+    "category": "Injection",
+    "severity": "High",
     "definition": "XXE allows an attacker to interfere with an application's processing of XML data, often disclosing files or causing SSRF.",
     "theory": "XML parsers allowing DOCTYPE/external entities can be tricked into reading local files or making network requests. Caused by insecurely configured parsers (DTD enabled).",
     "cve": "CVE-2018-1000840",
@@ -37,6 +43,8 @@ module.exports = [
   },
   {
     "name": "Insecure Deserialization",
+    "category": "Server-Side",
+    "severity": "Critical",
     "definition": "Untrusted data is used to abuse app logic by deserializing malicious objects, often leading to RCE.",
     "theory": "Apps deserializing attacker-controlled objects (Java, PHP, Python pickle, .NET) can be forced to run gadget chains during reconstruction, causing RCE.",
     "cve": "CVE-2017-9805 (Apache Struts REST)",
@@ -55,6 +63,8 @@ module.exports = [
   },
   {
     "name": "Server-Side Template Injection (SSTI)",
+    "category": "Injection",
+    "severity": "Critical",
     "definition": "User input embedded into a template engine unsafely, allowing template execution and often RCE.",
     "theory": "Template engines (Jinja2, Twig, Freemarker) evaluate expressions. If input reaches the template directly, attackers run server-side code.",
     "cve": "CVE-2019-8341 (Jinja2)",
@@ -73,6 +83,8 @@ module.exports = [
   },
   {
     "name": "Cross-Site Request Forgery (CSRF)",
+    "category": "Auth & Session",
+    "severity": "Medium",
     "definition": "Tricks an authenticated user's browser into submitting a malicious request to a site where they're logged in.",
     "theory": "Browsers auto-send cookies, so a malicious page can forge state-changing requests if no anti-CSRF token is required.",
     "cve": "CVE-2018-9942",
@@ -91,6 +103,8 @@ module.exports = [
   },
   {
     "name": "Path / Directory Traversal",
+    "category": "Access Control",
+    "severity": "High",
     "definition": "Read arbitrary files outside the intended directory using ../ sequences.",
     "theory": "Apps building file paths from input without sanitization let attackers escape the web root to sensitive files.",
     "cve": "CVE-2021-41773 (Apache HTTP Server)",
@@ -109,6 +123,8 @@ module.exports = [
   },
   {
     "name": "Local File Inclusion (LFI)",
+    "category": "Access Control",
+    "severity": "High",
     "definition": "Include local files on the server through dynamic inclusion mechanisms.",
     "theory": "Scripts that include files based on input (PHP include) can read logs/configs or escalate to RCE via log poisoning / PHP wrappers.",
     "cve": "CVE-2018-16763 (FUEL CMS)",
@@ -127,6 +143,8 @@ module.exports = [
   },
   {
     "name": "Remote File Inclusion (RFI)",
+    "category": "Access Control",
+    "severity": "Critical",
     "definition": "Include a remote attacker-hosted file into execution, often leading to RCE.",
     "theory": "With allow_url_include enabled and unsanitized input, the server fetches and executes a remote malicious script.",
     "cve": "CVE-2017-9841 (PHPUnit eval-stdin)",
@@ -145,6 +163,8 @@ module.exports = [
   },
   {
     "name": "Open Redirect",
+    "category": "Auth & Session",
+    "severity": "Medium",
     "definition": "Craft a link that redirects victims to a malicious site via a trusted domain.",
     "theory": "Unvalidated redirect params enable phishing, OAuth token theft, SSRF chaining. The trusted domain builds victim confidence.",
     "cve": "CVE-2019-11510 context",
@@ -163,6 +183,8 @@ module.exports = [
   },
   {
     "name": "Race Condition (TOCTOU)",
+    "category": "Business Logic",
+    "severity": "High",
     "definition": "Timing of operations is manipulated to cause unintended behavior, e.g. double-spending.",
     "theory": "Time-of-check to time-of-use gaps let concurrent requests bypass limits (redeem coupon twice, withdraw twice).",
     "cve": "CVE-2016-5195 (Dirty COW)",
@@ -181,6 +203,8 @@ module.exports = [
   },
   {
     "name": "Business Logic Vulnerability",
+    "category": "Business Logic",
+    "severity": "Medium",
     "definition": "Flaws in business rule design/implementation allowing unintended behavior.",
     "theory": "Logic flaws: negative quantities, price manipulation, skipping payment, abusing workflows. Scanners can't find them.",
     "cve": "CVE-2020-11651 context",
@@ -199,6 +223,8 @@ module.exports = [
   },
   {
     "name": "Subdomain Takeover",
+    "category": "Infrastructure",
+    "severity": "High",
     "definition": "A subdomain points to a deprovisioned external service an attacker can re-register.",
     "theory": "A dangling DNS CNAME points to an unclaimed service (S3, GitHub Pages, Heroku). Attacker claims it and serves content on the victim's subdomain.",
     "cve": "Multiple disclosed (HackerOne)",
@@ -217,6 +243,8 @@ module.exports = [
   },
   {
     "name": "JWT Vulnerabilities",
+    "category": "Auth & Session",
+    "severity": "Critical",
     "definition": "Flaws in JWT implementation: 'none' algorithm, weak secrets, key confusion.",
     "theory": "JWTs are signed tokens. Misconfigs: accepting alg:none, brute-forcing HS256 secrets, RS256->HS256 key confusion.",
     "cve": "CVE-2015-9235 (jsonwebtoken)",
@@ -235,6 +263,8 @@ module.exports = [
   },
   {
     "name": "Clickjacking (UI Redressing)",
+    "category": "Client-Side",
+    "severity": "Medium",
     "definition": "Trick a user into clicking something different from what they perceive via invisible iframes.",
     "theory": "Attacker overlays a transparent iframe of a target over decoy content, so victim clicks trigger framed-site actions.",
     "cve": "Various framing issues",
@@ -253,6 +283,8 @@ module.exports = [
   },
   {
     "name": "CORS Misconfiguration",
+    "category": "Auth & Session",
+    "severity": "High",
     "definition": "Improper CORS config lets malicious sites read sensitive responses.",
     "theory": "Reflecting Origin into Access-Control-Allow-Origin with credentials lets any attacker site read authenticated responses.",
     "cve": "Many web app cases",
@@ -271,6 +303,8 @@ module.exports = [
   },
   {
     "name": "HTTP Request Smuggling",
+    "category": "Infrastructure",
+    "severity": "Critical",
     "definition": "Exploits front-end/back-end disagreement in parsing request boundaries.",
     "theory": "When proxy and back-end disagree on Content-Length vs Transfer-Encoding, attacker smuggles a hidden request, poisoning others' responses.",
     "cve": "CVE-2019-18277 (HAProxy)",
@@ -289,6 +323,8 @@ module.exports = [
   },
   {
     "name": "Mass Assignment",
+    "category": "Access Control",
+    "severity": "High",
     "definition": "Framework auto-binds request params to object fields, setting unintended fields.",
     "theory": "ORMs auto-mapping JSON to model attributes let attackers add isAdmin:true or balance:9999 to requests.",
     "cve": "CVE-2012-2660 (Ruby on Rails)",
@@ -307,6 +343,8 @@ module.exports = [
   },
   {
     "name": "Prototype Pollution (JavaScript)",
+    "category": "Client-Side",
+    "severity": "High",
     "definition": "Attacker modifies Object.prototype, affecting all objects; can lead to RCE/DoS.",
     "theory": "Insecure recursive merge/clone lets keys like __proto__ inject properties into the base prototype, polluting every object.",
     "cve": "CVE-2019-10744 (lodash)",
@@ -325,6 +363,8 @@ module.exports = [
   },
   {
     "name": "Server-Side Includes (SSI) Injection",
+    "category": "Injection",
+    "severity": "High",
     "definition": "Inject SSI directives into server-parsed pages, leading to command execution.",
     "theory": "Servers parsing SSI (.shtml) execute directives like <!--#exec--> found in user input.",
     "cve": "CVE-2021-40438 context (Apache)",
@@ -343,6 +383,8 @@ module.exports = [
   },
   {
     "name": "LDAP Injection",
+    "category": "Injection",
+    "severity": "High",
     "definition": "Manipulate LDAP queries via unsanitized input to bypass auth or extract data.",
     "theory": "Apps building LDAP filters from input can be tricked with special chars (*, ), |, &) to alter logic.",
     "cve": "CVE-2018-1000134 context",
@@ -361,6 +403,8 @@ module.exports = [
   },
   {
     "name": "NoSQL Injection",
+    "category": "Injection",
+    "severity": "Critical",
     "definition": "Injection targeting NoSQL databases (MongoDB) via operator manipulation.",
     "theory": "NoSQL queries accept objects; passing operators like {$ne:null} can bypass auth or extract data.",
     "cve": "CVE-2021-22911 (Rocket.Chat)",
@@ -379,6 +423,8 @@ module.exports = [
   },
   {
     "name": "Unrestricted File Upload",
+    "category": "Access Control",
+    "severity": "Critical",
     "definition": "Upload of dangerous file types (.php) that can be executed, leading to RCE.",
     "theory": "When validation relies on extension or client checks, attackers upload web shells. Bypasses: double extensions, null bytes, content-type spoofing.",
     "cve": "CVE-2020-9484 (Apache Tomcat)",
@@ -397,6 +443,8 @@ module.exports = [
   },
   {
     "name": "Host Header Injection",
+    "category": "Server-Side",
+    "severity": "Medium",
     "definition": "Manipulate the Host header to poison links, reset passwords, or cache.",
     "theory": "Apps trusting Host to build URLs (password resets) can generate links to attacker domains, leaking tokens.",
     "cve": "CVE-2018-14773 context (Symfony)",
@@ -415,6 +463,8 @@ module.exports = [
   },
   {
     "name": "Cache Poisoning",
+    "category": "Infrastructure",
+    "severity": "High",
     "definition": "Inject malicious content into a cache so it's served to other users.",
     "theory": "Unkeyed inputs (headers) that influence responses but aren't part of the cache key let an attacker poison cached responses.",
     "cve": "Various CDN cases",
@@ -433,6 +483,8 @@ module.exports = [
   },
   {
     "name": "OAuth Misconfiguration",
+    "category": "Auth & Session",
+    "severity": "Critical",
     "definition": "Flaws in OAuth flows such as weak redirect_uri validation enabling token theft.",
     "theory": "Loose redirect_uri matching, missing state (CSRF), or leaking codes allow account takeover via the OAuth flow.",
     "cve": "CVE-2020-26877 context",
@@ -451,6 +503,8 @@ module.exports = [
   },
   {
     "name": "GraphQL Vulnerabilities",
+    "category": "API Security",
+    "severity": "Medium",
     "definition": "Introspection abuse, batching attacks, excessive data exposure in GraphQL APIs.",
     "theory": "GraphQL flexibility leaks schema via introspection, allows DoS via nested queries, brute-force via batching/aliasing.",
     "cve": "CVE-2021-41248 context",
@@ -469,6 +523,8 @@ module.exports = [
   },
   {
     "name": "Web Cache Deception",
+    "category": "Infrastructure",
+    "severity": "Medium",
     "definition": "Trick a cache into storing sensitive personalized pages later read by attackers.",
     "theory": "Appending a fake static extension (/account/page.css) makes the cache store a victim's authenticated page as static.",
     "cve": "PayPal research (2017)",
@@ -487,6 +543,8 @@ module.exports = [
   },
   {
     "name": "Broken Object Level Authorization (BOLA)",
+    "category": "API Security",
+    "severity": "Critical",
     "definition": "API endpoints expose objects by ID without checking ownership.",
     "theory": "OWASP API #1. Endpoints like /api/orders/{id} that don't verify ownership allow horizontal data access.",
     "cve": "CVE-2021-22214 context (GitLab API)",
@@ -505,6 +563,8 @@ module.exports = [
   },
   {
     "name": "Dependency Confusion",
+    "category": "Supply Chain",
+    "severity": "Critical",
     "definition": "Supply-chain attack where a public malicious package shadows a private internal package name.",
     "theory": "If a build pulls from public registries and a private name isn't claimed, an attacker publishes a higher-version public package that gets installed.",
     "cve": "Disclosed by Alex Birsan (2021)",
@@ -523,6 +583,8 @@ module.exports = [
   },
   {
     "name": "Log4Shell / EL Injection",
+    "category": "Injection",
+    "severity": "Critical",
     "definition": "Injection into logging/EL frameworks (Log4j JNDI) enabling remote code execution.",
     "theory": "Log4j evaluated ${jndi:ldap://...} lookups in logged strings, fetching/executing remote classes. EL injection abuses Expression Language similarly.",
     "cve": "CVE-2021-44228 (Log4Shell)",
@@ -541,6 +603,8 @@ module.exports = [
   },
   {
     "name": "Memory Corruption: Buffer Overflow",
+    "category": "Memory Safety",
+    "severity": "Critical",
     "definition": "Writing beyond a buffer's bounds, overwriting adjacent memory and potentially hijacking execution.",
     "theory": "In unsafe languages (C/C++), unchecked input copied into a fixed buffer overwrites the return address. Attackers redirect execution to shellcode or ROP chains.",
     "cve": "CVE-2019-0708 (BlueKeep)",
