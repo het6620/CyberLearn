@@ -6,11 +6,13 @@ const pool = new Pool({
     ? { rejectUnauthorized: false } : false,
 });
 async function initDb() {
+  // Use lesson_index (integer) as primary key instead of date string,
+  // so progress survives even when the app is deployed on a different day.
   await pool.query(`
     CREATE TABLE IF NOT EXISTS progress (
-      date TEXT PRIMARY KEY,
-      learned INTEGER DEFAULT 0,
-      quiz_done INTEGER DEFAULT 0,
+      lesson_index INTEGER PRIMARY KEY,
+      learned      INTEGER DEFAULT 0,
+      quiz_done    INTEGER DEFAULT 0,
       quiz_correct INTEGER DEFAULT 0,
       completed_at TIMESTAMPTZ
     );`);

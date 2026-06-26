@@ -63,3 +63,7 @@ pre{background:var(--bg);border:1px solid var(--border);border-radius:10px;paddi
 .stat .lbl{color:var(--muted);font-size:.8rem;margin-top:6px;text-transform:uppercase;letter-spacing:1px}
 footer{text-align:center;padding:24px;color:var(--muted);font-size:.78rem;border-top:1px solid var(--border)}
 @media(max-width:600px){.topbar{padding:14px 16px}.logo{font-size:1.1rem}.modal{padding:22px 18px}.streak{font-size:.72rem;padding:5px 10px}}
+
+/* ── Early-access unlock styles ───────────────────────────── */
+.badge.early{background:rgba(0,200,255,.18);color:#00c8ff;border:1px solid #00c8ff}
+.early-banner{background:rgba(0,200,255,.1);border:1px solid #00c8ff;border-radius:10px;padding:10px 16px;margin-bottom:18px;color:#00c8ff;font-size:.85rem;font-weight:600;letter-spacing:.5px}
