@@ -6,16 +6,8 @@ const pool = new Pool({
     ? { rejectUnauthorized: false } : false,
 });
 
-/**
- * All migrations here are additive and idempotent:
- *  - CREATE TABLE IF NOT EXISTS never touches an existing table's data.
- *  - ALTER TABLE ... ADD COLUMN IF NOT EXISTS is safe to re-run and never
- *    drops or renames anything, so existing progress rows are preserved
- *    exactly as-is across the v1 -> v2 upgrade.
- */
 async function initDb() {
-  // Original v1 table — unchanged shape, still the source of truth for
-  // learned/quiz state keyed by lesson_index.
+  // ── v1 ──────────────────────────────────────────────────────────────────────
   await pool.query(`
     CREATE TABLE IF NOT EXISTS progress (
       lesson_index INTEGER PRIMARY KEY,
@@ -25,14 +17,10 @@ async function initDb() {
       completed_at TIMESTAMPTZ
     );`);
 
-  // v2: bookmark flag lives alongside progress rather than a separate
-  // table, since it's a 1:1 per-lesson attribute just like `learned`.
   await pool.query(`
     ALTER TABLE progress
       ADD COLUMN IF NOT EXISTS bookmarked INTEGER DEFAULT 0;`);
 
-  // v2: free-text notes per lesson. Kept as its own table (not a column)
-  // since note content is larger/optional and this keeps `progress` lean.
   await pool.query(`
     CREATE TABLE IF NOT EXISTS notes (
       lesson_index INTEGER PRIMARY KEY,
@@ -40,7 +28,52 @@ async function initDb() {
       updated_at   TIMESTAMPTZ DEFAULT now()
     );`);
 
-  console.log("✅ PostgreSQL schema ready (v2)");
+  // ── v3: multi-user ───────────────────────────────────────────────────────────
+  await pool.query(`
+    CREATE TABLE IF NOT EXISTS users (
+      id            SERIAL PRIMARY KEY,
+      username      VARCHAR(64) UNIQUE NOT NULL,
+      email         VARCHAR(255) UNIQUE NOT NULL,
+      password_hash TEXT NOT NULL,
+      role          VARCHAR(16) DEFAULT 'user',
+      created_at    TIMESTAMPTZ DEFAULT now(),
+      last_login    TIMESTAMPTZ
+    );`);
+
+  // Per-user progress (replaces the global progress table for new users)
+  await pool.query(`
+    CREATE TABLE IF NOT EXISTS user_progress (
+      user_id      INTEGER REFERENCES users(id) ON DELETE CASCADE,
+      lesson_index INTEGER NOT NULL,
+      learned      INTEGER DEFAULT 0,
+      quiz_done    INTEGER DEFAULT 0,
+      quiz_correct INTEGER DEFAULT 0,
+      bookmarked   INTEGER DEFAULT 0,
+      completed_at TIMESTAMPTZ,
+      PRIMARY KEY (user_id, lesson_index)
+    );`);
+
+  await pool.query(`
+    CREATE TABLE IF NOT EXISTS user_notes (
+      user_id      INTEGER REFERENCES users(id) ON DELETE CASCADE,
+      lesson_index INTEGER NOT NULL,
+      content      TEXT DEFAULT '',
+      updated_at   TIMESTAMPTZ DEFAULT now(),
+      PRIMARY KEY (user_id, lesson_index)
+    );`);
+
+  // Password reset tokens
+  await pool.query(`
+    CREATE TABLE IF NOT EXISTS reset_tokens (
+      id         SERIAL PRIMARY KEY,
+      user_id    INTEGER REFERENCES users(id) ON DELETE CASCADE,
+      token      VARCHAR(128) UNIQUE NOT NULL,
+      expires_at TIMESTAMPTZ NOT NULL,
+      used       BOOLEAN DEFAULT false,
+      created_at TIMESTAMPTZ DEFAULT now()
+    );`);
+
+  console.log("✅ PostgreSQL schema ready (v3 — multi-user)");
 }
 
 module.exports = { pool, initDb };

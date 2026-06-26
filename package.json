@@ -1,10 +1,16 @@
 {
   "name": "cyberlearn",
-  "version": "2.0.0",
-  "description": "Daily cybersecurity vulnerability learning tracker — SOC console UI, category/severity analytics, notes & bookmarks (PostgreSQL)",
+  "version": "3.0.0",
+  "description": "Daily cybersecurity vulnerability learning tracker — multi-user, JWT auth, admin panel (PostgreSQL)",
   "main": "server.js",
   "type": "commonjs",
   "scripts": { "start": "node server.js" },
   "engines": { "node": ">=18.0.0" },
-  "dependencies": { "express": "^4.19.2", "pg": "^8.12.0" }
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "cookie-parser": "^1.4.6",
+    "express": "^4.19.2",
+    "jsonwebtoken": "^9.0.2",
+    "pg": "^8.12.0"
+  }
 }
