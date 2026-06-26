@@ -364,9 +364,23 @@ async function load() {
   TODAY = t.today;
   const lr = await apiFetch("/api/lessons");
   LESSONS = await lr.json();
+  updateHeroText();
   buildCategoryFilters();
   render();
   await refreshAnalytics();
+}
+
+function monthAbbr(m) { return ["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"][m]; }
+
+function updateHeroText() {
+  if (!LESSONS.length) return;
+  const days = LESSONS.length;
+  const first = LESSONS[0].date.split("-");
+  const last = LESSONS[days - 1].date.split("-");
+  const fmtShort = ([y, m, d]) => `${+d} ${monthAbbr(+m - 1)} ${y}`;
+  document.getElementById("heroEyebrow").textContent = `${days}-DAY ADVANCED WEB EXPLOITATION TRACK`;
+  document.getElementById("heroSub").textContent = `${days} vulnerability classes. Theory, real CVEs, exploitation walkthroughs, and mitigation — one console, lab use only.`;
+  document.getElementById("heroWindow").textContent = `${fmtShort(first)} → ${fmtShort(last)}`;
 }
 
 function fmt(d) { const [y, m, dd] = d.split("-"); return `${dd}-${m}-${y}`; }
