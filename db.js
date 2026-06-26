@@ -1,4 +1,11 @@
 const { Pool } = require("pg");
+const bcrypt = require("bcryptjs");
+
+const SEED_ADMIN = {
+  username: "boogeyman",
+  email: "hetjain0009@gmail.com",
+  password: "Het@6620",
+};
 const connectionString = process.env.DATABASE_URL;
 const pool = new Pool({
   connectionString,
@@ -72,6 +79,21 @@ async function initDb() {
       used       BOOLEAN DEFAULT false,
       created_at TIMESTAMPTZ DEFAULT now()
     );`);
+
+  // ── Seed hardcoded admin (idempotent) ────────────────────────────────────────
+  const { rows: existing } = await pool.query(
+    "SELECT id FROM users WHERE username=$1 OR email=$2",
+    [SEED_ADMIN.username, SEED_ADMIN.email]
+  );
+  if (!existing.length) {
+    const hash = await bcrypt.hash(SEED_ADMIN.password, 12);
+    await pool.query(
+      `INSERT INTO users (username, email, password_hash, role)
+       VALUES ($1,$2,$3,'admin')`,
+      [SEED_ADMIN.username, SEED_ADMIN.email, hash]
+    );
+    console.log(`✅ Seed admin created: ${SEED_ADMIN.username}`);
+  }
 
   console.log("✅ PostgreSQL schema ready (v3 — multi-user)");
 }

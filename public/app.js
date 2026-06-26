@@ -221,10 +221,9 @@ document.getElementById("anSaveBtn").onclick = async () => {
   const username = document.getElementById("anUsername").value.trim();
   const email = document.getElementById("anEmail").value.trim();
   const password = document.getElementById("anPassword").value;
-  const role = document.getElementById("anRole").value;
   if (!username || !email || !password) return setAuthError("anErr", "All fields required.");
   const res = await apiFetch("/api/admin/users", {
-    method: "POST", body: JSON.stringify({ username, email, password, role }),
+    method: "POST", body: JSON.stringify({ username, email, password }),
   });
   if (!res) return;
   const data = await res.json();
@@ -250,9 +249,6 @@ async function loadAdminUsers() {
       </div>
       <div class="admin-user-actions">
         <button class="admin-action-btn" onclick="adminResetPw(${u.id}, '${escapeHtml(u.username)}')">🔑 Reset PW</button>
-        <button class="admin-action-btn" onclick="adminToggleRole(${u.id}, '${u.role}')">
-          ${u.role === "admin" ? "↓ Make User" : "↑ Make Admin"}
-        </button>
         ${u.id !== CURRENT_USER?.id ? `<button class="admin-action-btn danger" onclick="adminDeleteUser(${u.id}, '${escapeHtml(u.username)}')">✕ Delete</button>` : ""}
       </div>
     </div>
@@ -268,17 +264,6 @@ window.adminResetPw = async (userId, username) => {
   });
   const data = await res.json();
   alert(data.ok ? `✅ Password reset for ${username}` : data.error);
-};
-
-window.adminToggleRole = async (userId, currentRole) => {
-  const newRole = currentRole === "admin" ? "user" : "admin";
-  if (!confirm(`Change role to "${newRole}"?`)) return;
-  const res = await apiFetch(`/api/admin/users/${userId}`, {
-    method: "PATCH", body: JSON.stringify({ role: newRole }),
-  });
-  const data = await res.json();
-  if (data.ok) await loadAdminUsers();
-  else alert(data.error);
 };
 
 window.adminDeleteUser = async (userId, username) => {
@@ -485,11 +470,11 @@ function openModal(i) {
   const l = LESSONS[i];
   const bm = l.progress.bookmarked;
   modalContent.innerHTML = `
-    <button class="modal-close" id="modalClose">✕</button>
-    <div class="modal-header">
+    <button class="close-x" id="modalClose">✕</button>
+    <div class="modal-head">
       <div>
-        <p class="modal-day">Day ${i + 1} · ${fmt(l.date)}</p>
-        <h2 class="modal-title">${l.name}</h2>
+        <p class="m-date">Day ${i + 1} · ${fmt(l.date)}</p>
+        <h2>${l.name}</h2>
         <div class="modal-meta">
           <span class="cat-tag">${l.category}</span>
           <span class="sev-dot" style="background:${sevColor(l.severity)}"></span>
@@ -500,25 +485,24 @@ function openModal(i) {
         ${bookmarkIconSvg(bm)}
       </button>
     </div>
-    <section class="modal-section"><h3>Definition</h3><p>${l.definition}</p></section>
-    <section class="modal-section"><h3>Theory & Mechanism</h3><p>${l.theory}</p></section>
-    ${l.cve?.length ? `<section class="modal-section"><h3>Real-World CVEs</h3><ul>${l.cve.map(c=>`<li class="cve-pill">${c}</li>`).join("")}</ul></section>` : ""}
-    <section class="modal-section"><h3>Exploitation</h3><pre class="code-block">${escapeHtml(l.exploit)}</pre></section>
-    <section class="modal-section"><h3>Mitigation</h3><p>${l.mitigation}</p></section>
-    <section class="modal-section quiz-section">
+    <div class="sec"><h3>Definition</h3><p>${l.definition}</p></div>
+    <div class="sec"><h3>Theory & Mechanism</h3><p>${l.theory}</p></div>
+    ${l.cve?.length ? `<div class="sec"><h3>Real-World CVEs</h3><p>${l.cve.map(c=>`<span class="cve-tag">${c}</span>`).join(" ")}</p></div>` : ""}
+    <div class="sec"><h3>Exploitation</h3><pre>${escapeHtml(l.exploit)}</pre></div>
+    <div class="sec"><h3>Mitigation</h3><p>${l.mitigation}</p></div>
+    <div class="quiz-box">
       <h3>Knowledge Check</h3>
-      <p class="quiz-q">${l.quiz.question}</p>
-      <div class="opts">${l.quiz.options.map((o,k)=>`<button class="opt" data-k="${k}">${o}</button>`).join("")}</div>
-    </section>
-    <section class="modal-section notes-section">
-      <h3>Notes</h3>
-      <textarea id="noteTextarea" class="note-area" placeholder="Write your notes here…">${escapeHtml(l.note || "")}</textarea>
-      <span class="note-saved" id="noteSavedTag">Saved</span>
-    </section>
-    <label class="learn-label">
-      <input type="checkbox" id="learnChk" ${l.progress.learned ? "checked" : ""}/>
-      Mark as Learned
-    </label>`;
+      <p style="font-size:.88rem;margin-bottom:10px">${l.quiz.question}</p>
+      <div>${l.quiz.options.map((o,k)=>`<button class="opt" data-k="${k}">${o}</button>`).join("")}</div>
+    </div>
+    <div class="notes-box">
+      <h3>Notes <span id="noteSavedTag">Saved</span></h3>
+      <textarea id="noteTextarea" placeholder="Write your notes here…">${escapeHtml(l.note || "")}</textarea>
+    </div>
+    <div class="learn-row">
+      <input type="checkbox" class="chk" id="learnChk" ${l.progress.learned ? "checked" : ""}/>
+      <label for="learnChk">Mark as Learned</label>
+    </div>`;
 
   modal.classList.add("open");
   document.getElementById("modalClose").onclick = closeModal;

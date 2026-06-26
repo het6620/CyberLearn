@@ -179,7 +179,7 @@
 <!-- Change Password Modal -->
 <div class="modal-overlay" id="cpModal">
   <div class="modal cp-modal" role="dialog" aria-modal="true">
-    <button class="modal-close" id="cpClose">✕</button>
+    <button class="close-x" id="cpClose">✕</button>
     <h2>Change Password</h2>
     <input class="auth-input" id="cpCurrent" type="password" placeholder="Current password" />
     <input class="auth-input" id="cpNew" type="password" placeholder="New password (min 8 chars)" />
@@ -193,7 +193,7 @@
 <!-- Admin Panel Modal -->
 <div class="modal-overlay" id="adminModal">
   <div class="modal admin-modal" role="dialog" aria-modal="true">
-    <button class="modal-close" id="adminClose">✕</button>
+    <button class="close-x" id="adminClose">✕</button>
     <h2>⚙️ Admin Panel — Users</h2>
     <div class="admin-toolbar">
       <button class="auth-btn admin-new-btn" id="adminNewUserBtn">+ New User</button>
@@ -202,7 +202,6 @@
       <input class="auth-input" id="anUsername" type="text" placeholder="Username" />
       <input class="auth-input" id="anEmail" type="email" placeholder="Email" />
       <input class="auth-input" id="anPassword" type="password" placeholder="Password" />
-      <select class="auth-input" id="anRole"><option value="user">User</option><option value="admin">Admin</option></select>
       <div style="display:flex;gap:8px">
         <button class="auth-btn" id="anSaveBtn">Create</button>
         <button class="auth-btn" style="background:var(--surface2)" id="anCancelBtn">Cancel</button>

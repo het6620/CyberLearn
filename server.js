@@ -49,14 +49,10 @@ app.post("/api/auth/register", async (req, res) => {
     return res.status(400).json({ error: "Username must be 3-32 alphanumeric/underscore chars" });
   try {
     const hash = await hashPassword(password);
-    // First user ever becomes admin
-    const countRes = await pool.query("SELECT COUNT(*) FROM users");
-    const isFirst = parseInt(countRes.rows[0].count) === 0;
-    const role = isFirst ? "admin" : "user";
     const { rows } = await pool.query(
       `INSERT INTO users (username, email, password_hash, role)
-       VALUES ($1,$2,$3,$4) RETURNING id, username, email, role`,
-      [username.toLowerCase(), email.toLowerCase(), hash, role]
+       VALUES ($1,$2,$3,'user') RETURNING id, username, email, role`,
+      [username.toLowerCase(), email.toLowerCase(), hash]
     );
     const user = rows[0];
     const token = signToken({ id: user.id, username: user.username, role: user.role });
@@ -186,18 +182,17 @@ app.get("/api/admin/users", requireAuth, requireAdmin, async (req, res) => {
   } catch (e) { console.error(e); res.status(500).json({ error: "db error" }); }
 });
 
-/** POST /api/admin/users — admin creates a user directly */
+/** POST /api/admin/users — admin creates a regular user (role always "user") */
 app.post("/api/admin/users", requireAuth, requireAdmin, async (req, res) => {
-  const { username, email, password, role } = req.body;
+  const { username, email, password } = req.body;
   if (!username || !email || !password) return res.status(400).json({ error: "username, email and password required" });
   if (password.length < 8) return res.status(400).json({ error: "Password must be at least 8 characters" });
-  if (!["user","admin"].includes(role || "user")) return res.status(400).json({ error: "role must be user or admin" });
   try {
     const hash = await hashPassword(password);
     const { rows } = await pool.query(
       `INSERT INTO users (username, email, password_hash, role)
-       VALUES ($1,$2,$3,$4) RETURNING id, username, email, role, created_at`,
-      [username.toLowerCase(), email.toLowerCase(), hash, role || "user"]
+       VALUES ($1,$2,$3,'user') RETURNING id, username, email, role, created_at`,
+      [username.toLowerCase(), email.toLowerCase(), hash]
     );
     res.status(201).json({ ok: true, user: rows[0] });
   } catch (e) {
@@ -209,21 +204,16 @@ app.post("/api/admin/users", requireAuth, requireAdmin, async (req, res) => {
   }
 });
 
-/** PATCH /api/admin/users/:id — update role or reset password */
+/** PATCH /api/admin/users/:id — reset a user's password (role changes not permitted) */
 app.patch("/api/admin/users/:id", requireAuth, requireAdmin, async (req, res) => {
   const userId = parseInt(req.params.id);
-  const { role, password } = req.body;
+  const { password } = req.body;
   if (isNaN(userId)) return res.status(400).json({ error: "Invalid user id" });
+  if (!password) return res.status(400).json({ error: "password required" });
+  if (password.length < 8) return res.status(400).json({ error: "Password must be at least 8 characters" });
   try {
-    if (role) {
-      if (!["user","admin"].includes(role)) return res.status(400).json({ error: "role must be user or admin" });
-      await pool.query("UPDATE users SET role=$1 WHERE id=$2", [role, userId]);
-    }
-    if (password) {
-      if (password.length < 8) return res.status(400).json({ error: "Password must be at least 8 characters" });
-      const hash = await hashPassword(password);
-      await pool.query("UPDATE users SET password_hash=$1 WHERE id=$2", [hash, userId]);
-    }
+    const hash = await hashPassword(password);
+    await pool.query("UPDATE users SET password_hash=$1 WHERE id=$2", [hash, userId]);
     const { rows } = await pool.query("SELECT id, username, email, role FROM users WHERE id=$1", [userId]);
     if (!rows.length) return res.status(404).json({ error: "User not found" });
     res.json({ ok: true, user: rows[0] });
