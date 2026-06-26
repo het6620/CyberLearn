@@ -291,6 +291,21 @@ pre{
 .opt.correct{border-color:var(--accent); background:var(--accent-dim); color:var(--accent)}
 .opt.wrong{border-color:var(--critical); background:var(--critical-dim); color:var(--critical)}
 
+.example-sec{background:var(--surface); border:1px solid var(--border); border-radius:var(--r-md); padding:16px 18px}
+.example-scenario{line-height:1.6; color:var(--text); font-size:.88rem; margin-bottom:12px; font-style:italic; color:var(--muted)}
+.example-code{margin:0}
+
+.quiz-progress{color:var(--muted-2); font-size:.72rem; font-weight:500; text-transform:none; letter-spacing:0; margin-left:6px}
+.quiz-q{border-top:1px solid var(--border); padding-top:4px}
+.quiz-q:first-of-type{border-top:none; padding-top:0}
+
+.reset-check-row{
+  display:flex; align-items:center; gap:10px; padding:10px 0; cursor:pointer;
+  font-size:.86rem; color:var(--text); border-bottom:1px solid var(--border);
+}
+.reset-check-row:last-of-type{border-bottom:none}
+.reset-check-row input[type="checkbox"]{width:16px; height:16px; accent-color:var(--accent); cursor:pointer}
+
 .notes-box{margin-top:20px}
 .notes-box h3{color:var(--text); font-size:.85rem; font-weight:600; text-transform:none; letter-spacing:0; margin-bottom:8px; display:flex; align-items:center; gap:8px}
 #noteSavedTag{font-size:.68rem; color:var(--muted-2); font-weight:400; opacity:0; transition:opacity .3s}

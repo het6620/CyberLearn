@@ -231,6 +231,29 @@ app.delete("/api/admin/users/:id", requireAuth, requireAdmin, async (req, res) =
   } catch (e) { console.error(e); res.status(500).json({ error: "db error" }); }
 });
 
+app.post("/api/reset-progress", requireAuth, async (req, res) => {
+  const uid = req.user.id;
+  const { resetLearning = true, resetBookmarks = false, resetNotes = false } = req.body || {};
+  try {
+    if (resetLearning && resetBookmarks) {
+      // Full row wipe is fine since both progress fields and bookmark live in user_progress
+      await pool.query("DELETE FROM user_progress WHERE user_id=$1", [uid]);
+    } else if (resetLearning) {
+      // Keep bookmarks, clear everything else
+      await pool.query(
+        `UPDATE user_progress
+         SET learned=0, quiz_done=0, quiz_correct=0, quiz_answers='{}'::jsonb, completed_at=NULL
+         WHERE user_id=$1`, [uid]);
+    } else if (resetBookmarks) {
+      await pool.query("UPDATE user_progress SET bookmarked=0 WHERE user_id=$1", [uid]);
+    }
+    if (resetNotes) {
+      await pool.query("DELETE FROM user_notes WHERE user_id=$1", [uid]);
+    }
+    res.json({ ok: true });
+  } catch (e) { console.error(e); res.status(500).json({ error: "db error" }); }
+});
+
 /* ── Per-user lesson endpoints ────────────────────────────────── */
 
 app.get("/api/today", (req, res) => res.json({ today: todayStr() }));
@@ -246,11 +269,11 @@ app.get("/api/lessons", requireAuth, async (req, res) => {
     const data = vulns.map((v, i) => ({
       id: i, date: v.date, name: v.name, category: v.category, severity: v.severity,
       definition: v.definition, theory: v.theory, cve: v.cve, exploit: v.exploit,
-      mitigation: v.mitigation, quiz: v.quiz,
+      example: v.example, mitigation: v.mitigation, quizzes: v.quizzes,
       note: noteMap[i] || "",
       progress: progMap[i]
-        ? { ...progMap[i], bookmarked: progMap[i].bookmarked || 0 }
-        : { learned: 0, quiz_done: 0, quiz_correct: 0, bookmarked: 0 }
+        ? { ...progMap[i], bookmarked: progMap[i].bookmarked || 0, quiz_answers: progMap[i].quiz_answers || {} }
+        : { learned: 0, quiz_done: 0, quiz_correct: 0, bookmarked: 0, quiz_answers: {} }
     }));
     res.json(data);
   } catch (e) { console.error(e); res.status(500).json({ error: "db error" }); }
@@ -275,20 +298,32 @@ app.post("/api/learn", requireAuth, async (req, res) => {
 
 app.post("/api/quiz", requireAuth, async (req, res) => {
   const uid = req.user.id;
-  const { index, selected } = req.body;
+  const { index, qIndex, selected } = req.body;
   const vulns = getVulns();
   if (index === undefined || index < 0 || index >= vulns.length)
     return res.status(400).json({ error: "bad index" });
   const v = vulns[index];
-  const correct = selected === v.quiz.answer ? 1 : 0;
+  const questions = v.quizzes || (v.quiz ? [v.quiz] : []);
+  if (qIndex === undefined || qIndex < 0 || qIndex >= questions.length)
+    return res.status(400).json({ error: "bad qIndex" });
+  const q = questions[qIndex];
+  const correct = selected === q.answer;
   try {
+    const { rows } = await pool.query(
+      "SELECT quiz_answers FROM user_progress WHERE user_id=$1 AND lesson_index=$2",
+      [uid, index]
+    );
+    const existing = rows[0]?.quiz_answers || {};
+    const updated = { ...existing, [qIndex]: correct };
+    const allAnswered = questions.length > 0 && questions.every((_, k) => updated[k] !== undefined);
+    const allCorrect = allAnswered && questions.every((_, k) => updated[k] === true);
     await pool.query(
-      `INSERT INTO user_progress (user_id, lesson_index, quiz_done, quiz_correct)
-       VALUES ($1,$2,1,$3)
+      `INSERT INTO user_progress (user_id, lesson_index, quiz_done, quiz_correct, quiz_answers)
+       VALUES ($1,$2,$3,$4,$5)
        ON CONFLICT (user_id, lesson_index) DO UPDATE
-       SET quiz_done=1, quiz_correct=EXCLUDED.quiz_correct`,
-      [uid, index, correct]);
-    res.json({ ok: true, correct: !!correct, answer: v.quiz.answer });
+       SET quiz_done=EXCLUDED.quiz_done, quiz_correct=EXCLUDED.quiz_correct, quiz_answers=EXCLUDED.quiz_answers`,
+      [uid, index, allAnswered ? 1 : 0, allCorrect ? 1 : 0, JSON.stringify(updated)]);
+    res.json({ ok: true, correct, answer: q.answer, allAnswered, allCorrect, quiz_answers: updated });
   } catch (e) { console.error(e); res.status(500).json({ error: "db error" }); }
 });
 

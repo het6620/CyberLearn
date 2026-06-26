@@ -96,6 +96,7 @@
         <div class="user-dropdown-info" id="userDropdownInfo"></div>
         <hr class="dropdown-sep"/>
         <button class="dropdown-item" id="changePasswordBtn">🔑 Change Password</button>
+        <button class="dropdown-item" id="resetProgressBtn">🔄 Reset Progress</button>
         <button class="dropdown-item" id="adminPanelBtn" style="display:none">⚙️ Admin Panel</button>
         <hr class="dropdown-sep"/>
         <button class="dropdown-item logout-item" id="logoutBtn">↩ Sign Out</button>
@@ -190,6 +191,30 @@
     <button class="auth-btn" id="cpSaveBtn">Update Password</button>
     <p class="auth-err" id="cpErr"></p>
     <p class="auth-ok" id="cpOk"></p>
+  </div>
+</div>
+
+<!-- Reset Progress Modal -->
+<div class="modal-overlay" id="resetModal">
+  <div class="modal cp-modal" role="dialog" aria-modal="true">
+    <button class="close-x" id="resetClose">✕</button>
+    <h2>🔄 Reset Progress</h2>
+    <p style="font-size:.85rem;color:var(--muted);margin:0 0 14px">Choose what to reset. This cannot be undone.</p>
+    <label class="reset-check-row">
+      <input type="checkbox" id="resetLearningChk" checked />
+      <span>Learning progress &amp; quiz scores</span>
+    </label>
+    <label class="reset-check-row">
+      <input type="checkbox" id="resetBookmarksChk" />
+      <span>Bookmarks</span>
+    </label>
+    <label class="reset-check-row">
+      <input type="checkbox" id="resetNotesChk" />
+      <span>Notes</span>
+    </label>
+    <button class="auth-btn" id="resetConfirmBtn" style="background:var(--sev-critical);margin-top:16px">Reset Selected</button>
+    <p class="auth-err" id="resetErr"></p>
+    <p class="auth-ok" id="resetOk"></p>
   </div>
 </div>
 

@@ -198,6 +198,42 @@ document.getElementById("cpSaveBtn").onclick = async () => {
   setTimeout(() => cpModal.classList.remove("open"), 1800);
 };
 
+/* ── Reset progress modal ────────────────────────────────── */
+const resetModal = document.getElementById("resetModal");
+document.getElementById("resetProgressBtn").onclick = () => {
+  userDropdown.style.display = "none";
+  document.getElementById("resetLearningChk").checked = true;
+  document.getElementById("resetBookmarksChk").checked = false;
+  document.getElementById("resetNotesChk").checked = false;
+  document.getElementById("resetErr").textContent = "";
+  document.getElementById("resetOk").textContent = "";
+  resetModal.classList.add("open");
+};
+document.getElementById("resetClose").onclick = () => resetModal.classList.remove("open");
+resetModal.onclick = e => { if (e.target === resetModal) resetModal.classList.remove("open"); };
+
+document.getElementById("resetConfirmBtn").onclick = async () => {
+  const resetLearning = document.getElementById("resetLearningChk").checked;
+  const resetBookmarks = document.getElementById("resetBookmarksChk").checked;
+  const resetNotes = document.getElementById("resetNotesChk").checked;
+  document.getElementById("resetErr").textContent = "";
+  document.getElementById("resetOk").textContent = "";
+  if (!resetLearning && !resetBookmarks && !resetNotes) {
+    document.getElementById("resetErr").textContent = "Select at least one item to reset.";
+    return;
+  }
+  if (!confirm("This will permanently erase the selected data. Continue?")) return;
+  const res = await apiFetch("/api/reset-progress", {
+    method: "POST", body: JSON.stringify({ resetLearning, resetBookmarks, resetNotes }),
+  });
+  if (!res) return;
+  const data = await res.json();
+  if (!res.ok) { document.getElementById("resetErr").textContent = data.error || "Failed."; return; }
+  document.getElementById("resetOk").textContent = "✅ Progress reset.";
+  await load();
+  setTimeout(() => resetModal.classList.remove("open"), 1200);
+};
+
 /* ── Admin panel modal ──────────────────────────────────── */
 const adminModal = document.getElementById("adminModal");
 document.getElementById("adminPanelBtn").onclick = async () => {
@@ -466,6 +502,62 @@ function render() {
   });
 }
 
+/* ── Quiz (multi-question) ─────────────────────────────── */
+function renderQuizBox(i) {
+  const l = LESSONS[i];
+  const questions = l.quizzes || (l.quiz ? [l.quiz] : []);
+  const answeredMap = l.progress.quiz_answers || {};
+  const box = document.getElementById("quizBox");
+  if (!box) return;
+
+  box.innerHTML = `
+    <h3>Knowledge Check <span class="quiz-progress" id="quizProgress"></span></h3>
+    ${questions.map((q, qi) => `
+      <div class="quiz-q" data-qi="${qi}">
+        <p style="font-size:.88rem;margin:14px 0 10px">${qi + 1}. ${escapeHtml(q.question)}</p>
+        <div>${q.options.map((o, k) => `<button class="opt" data-qi="${qi}" data-k="${k}">${escapeHtml(o)}</button>`).join("")}</div>
+      </div>
+    `).join("")}`;
+
+  function updateProgress() {
+    const answeredCount = Object.keys(answeredMap).length;
+    document.getElementById("quizProgress").textContent = `${answeredCount}/${questions.length} answered`;
+  }
+  updateProgress();
+
+  questions.forEach((q, qi) => {
+    const qWrap = box.querySelector(`.quiz-q[data-qi="${qi}"]`);
+    const already = answeredMap[qi] !== undefined;
+    qWrap.querySelectorAll(".opt").forEach(btn => {
+      if (already) {
+        btn.disabled = true;
+        const k = +btn.dataset.k;
+        if (k === q.answer) btn.classList.add("correct");
+      }
+      btn.onclick = async () => {
+        const sel = +btn.dataset.k;
+        const res = await apiFetch("/api/quiz", {
+          method: "POST", body: JSON.stringify({ index: i, qIndex: qi, selected: sel }),
+        });
+        if (!res) return;
+        const r = await res.json();
+        qWrap.querySelectorAll(".opt").forEach((b, k) => {
+          b.disabled = true;
+          if (k === r.answer) b.classList.add("correct");
+          if (k === sel && !r.correct) b.classList.add("wrong");
+        });
+        answeredMap[qi] = r.correct;
+        l.progress.quiz_answers = answeredMap;
+        l.progress.quiz_done = r.allAnswered ? 1 : 0;
+        l.progress.quiz_correct = r.allCorrect ? 1 : 0;
+        updateProgress();
+        await refreshAnalytics();
+        render();
+      };
+    });
+  });
+}
+
 /* ── Modal ──────────────────────────────────────────────── */
 function openModal(i) {
   const l = LESSONS[i];
@@ -490,12 +582,13 @@ function openModal(i) {
     <div class="sec"><h3>Theory & Mechanism</h3><p>${l.theory}</p></div>
     ${l.cve?.length ? `<div class="sec"><h3>Real-World CVEs</h3><p>${(Array.isArray(l.cve) ? l.cve : [l.cve]).map(c=>`<span class="cve-tag">${escapeHtml(c)}</span>`).join(" ")}</p></div>` : ""}
     <div class="sec"><h3>Exploitation</h3><pre>${escapeHtml(l.exploit)}</pre></div>
+    ${l.example ? `<div class="sec example-sec">
+      <h3>Example</h3>
+      <p class="example-scenario">${escapeHtml(l.example.scenario)}</p>
+      <pre class="example-code">${escapeHtml(l.example.code)}</pre>
+    </div>` : ""}
     <div class="sec"><h3>Mitigation</h3><p>${l.mitigation}</p></div>
-    <div class="quiz-box">
-      <h3>Knowledge Check</h3>
-      <p style="font-size:.88rem;margin-bottom:10px">${l.quiz.question}</p>
-      <div>${l.quiz.options.map((o,k)=>`<button class="opt" data-k="${k}">${o}</button>`).join("")}</div>
-    </div>
+    <div class="quiz-box" id="quizBox"></div>
     <div class="notes-box">
       <h3>Notes <span id="noteSavedTag">Saved</span></h3>
       <textarea id="noteTextarea" placeholder="Write your notes here…">${escapeHtml(l.note || "")}</textarea>
@@ -520,24 +613,7 @@ function openModal(i) {
     render();
   };
 
-  const quizDone = l.progress.quiz_done;
-  modalContent.querySelectorAll(".opt").forEach(btn => {
-    if (quizDone) btn.disabled = true;
-    btn.onclick = async () => {
-      const sel = +btn.dataset.k;
-      const res = await apiFetch("/api/quiz", {
-        method: "POST", body: JSON.stringify({ index: i, selected: sel }),
-      });
-      const r = await res.json();
-      modalContent.querySelectorAll(".opt").forEach((b, k) => {
-        b.disabled = true;
-        if (k === r.answer) b.classList.add("correct");
-        if (k === sel && !r.correct) b.classList.add("wrong");
-      });
-      l.progress.quiz_done = 1; l.progress.quiz_correct = r.correct ? 1 : 0;
-      await refreshAnalytics();
-    };
-  });
+  renderQuizBox(i);
 
   const noteArea = document.getElementById("noteTextarea");
   const savedTag = document.getElementById("noteSavedTag");

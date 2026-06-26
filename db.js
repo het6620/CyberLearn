@@ -60,6 +60,11 @@ async function initDb() {
       PRIMARY KEY (user_id, lesson_index)
     );`);
 
+  // v4: per-question quiz tracking (multiple questions per lesson)
+  await pool.query(`
+    ALTER TABLE user_progress
+      ADD COLUMN IF NOT EXISTS quiz_answers JSONB DEFAULT '{}'::jsonb;`);
+
   await pool.query(`
     CREATE TABLE IF NOT EXISTS user_notes (
       user_id      INTEGER REFERENCES users(id) ON DELETE CASCADE,
@@ -95,7 +100,7 @@ async function initDb() {
     console.log(`✅ Seed admin created: ${SEED_ADMIN.username}`);
   }
 
-  console.log("✅ PostgreSQL schema ready (v3 — multi-user)");
+  console.log("✅ PostgreSQL schema ready (v4 — multi-question quizzes)");
 }
 
 module.exports = { pool, initDb };
